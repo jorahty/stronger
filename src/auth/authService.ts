@@ -3,7 +3,6 @@ import * as bcrypt from 'bcrypt';
 
 import { Credentials, LoginResponse } from './auth';
 
-import secrets from '../../data/secrets.json';
 import users from '../../data/users.json';
 
 export class AuthService {
@@ -19,7 +18,7 @@ export class AuthService {
     if (user) {
       const accessToken = jwt.sign(
         { email: user.email, name: user.name, scopes: user.roles },
-        secrets.accessToken,
+        process.env.ACCESS_TOKEN as string,
         {
           expiresIn: '30m',
           algorithm: 'HS256',
@@ -37,18 +36,22 @@ export class AuthService {
         reject(new Error('Unauthorized'));
       } else {
         const token = authHeader.split(' ')[1];
-        jwt.verify(token, secrets.accessToken, (err: any, user: any) => {
-          if (err) {
-            reject(err);
-          } else if (scopes) {
-            for (const scope of scopes) {
-              if (!user.scopes || !user.scopes.includes(scope)) {
-                reject(new Error('Unauthorized'));
+        jwt.verify(
+          token,
+          process.env.ACCESS_TOKEN as string,
+          (err: any, user: any) => {
+            if (err) {
+              reject(err);
+            } else if (scopes) {
+              for (const scope of scopes) {
+                if (!user.scopes || !user.scopes.includes(scope)) {
+                  reject(new Error('Unauthorized'));
+                }
               }
             }
+            resolve({ email: user.email, name: user.name });
           }
-          resolve({ email: user.email, name: user.name });
-        });
+        );
       }
     });
   }

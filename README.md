@@ -6,6 +6,16 @@ A platform to connect people looking for a gym partner
 
 1. Download and install [Docker Desktop](https://www.docker.com/products/docker-desktop/)
 2. Install Node packages: `npm install`
+3. Create `.env` file at the root of the project:
+   ```
+   POSTGRES_DB=dev
+   POSTGRES_USER=some-user
+   POSTGRES_PASSWORD=some-password
+   ```
+4. Set a JWT secret:
+   ```
+   export ACCESS_TOKEN=some-long-secret-more-complex-than-this
+   ```
 
 ## Usage
 
