@@ -2,6 +2,7 @@ import * as jwt from 'jsonwebtoken';
 import * as bcrypt from 'bcrypt';
 
 import { Credentials, LoginResponse } from './auth';
+import { SessionUser } from 'src/types/custom';
 
 import users from '../../data/users.json';
 
@@ -9,13 +10,10 @@ export class AuthService {
   public async login(
     credentials: Credentials
   ): Promise<LoginResponse | undefined> {
-    const user = users.find((user) => {
-      return (
-        user.email === credentials.username &&
-        bcrypt.compareSync(credentials.password, user.password)
-      );
-    });
-    if (user) {
+    // find user
+    const user = users.find((user) => user.email === credentials.username);
+
+    if (user && bcrypt.compareSync(credentials.password, user.password)) {
       const accessToken = jwt.sign(
         { email: user.email, name: user.name, scopes: user.roles },
         process.env.ACCESS_TOKEN as string,
@@ -24,13 +22,16 @@ export class AuthService {
           algorithm: 'HS256',
         }
       );
-      return { name: user.name, accessToken: accessToken };
+      return { username: user.name, accessToken: accessToken };
     } else {
       return undefined;
     }
   }
 
-  public async check(authHeader?: string, scopes?: string[]): Promise<any> {
+  public async check(
+    authHeader?: string,
+    scopes?: string[]
+  ): Promise<SessionUser> {
     return new Promise((resolve, reject) => {
       if (!authHeader) {
         reject(new Error('Unauthorized'));
@@ -39,7 +40,7 @@ export class AuthService {
         jwt.verify(
           token,
           process.env.ACCESS_TOKEN as string,
-          (err: any, user: any) => {
+          (err, user: any) => {
             if (err) {
               reject(err);
             } else if (scopes) {
@@ -49,7 +50,7 @@ export class AuthService {
                 }
               }
             }
-            resolve({ email: user.email, name: user.name });
+            resolve({ username: user.email, name: user.name });
           }
         );
       }

@@ -1,4 +1,4 @@
 export type SessionUser = {
-  email: string;
+  username: string;
   name: string;
 };
