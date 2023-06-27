@@ -11,11 +11,11 @@ export class AuthService {
     credentials: Credentials
   ): Promise<LoginResponse | undefined> {
     // find user
-    const user = users.find((user) => user.email === credentials.username);
+    const user = users.find((user) => user.username === credentials.username);
 
-    if (user && bcrypt.compareSync(credentials.password, user.password)) {
+    if (user && bcrypt.compareSync(credentials.password, user.pwhash)) {
       const accessToken = jwt.sign(
-        { username: user.email, name: user.name, scopes: user.roles },
+        { username: user.username, name: user.name, scopes: ['member'] },
         process.env.ACCESS_TOKEN as string,
         {
           expiresIn: '30m',
