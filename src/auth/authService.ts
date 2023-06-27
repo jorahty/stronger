@@ -1,7 +1,7 @@
 import * as jwt from 'jsonwebtoken';
 import * as bcrypt from 'bcrypt';
 
-import { Credentials, LoginResponse } from './auth';
+import { Credentials, JwtPayload, LoginResponse } from './auth';
 import { SessionUser } from 'src/types/custom';
 
 import users from '../../data/users.json';
@@ -15,7 +15,7 @@ export class AuthService {
 
     if (user && bcrypt.compareSync(credentials.password, user.password)) {
       const accessToken = jwt.sign(
-        { email: user.email, name: user.name, scopes: user.roles },
+        { username: user.email, name: user.name, scopes: user.roles },
         process.env.ACCESS_TOKEN as string,
         {
           expiresIn: '30m',
@@ -40,7 +40,8 @@ export class AuthService {
         jwt.verify(
           token,
           process.env.ACCESS_TOKEN as string,
-          (err, user: any) => {
+          (err, decoded) => {
+            const user = decoded as JwtPayload;
             if (err) {
               reject(err);
             } else if (scopes) {
@@ -50,7 +51,7 @@ export class AuthService {
                 }
               }
             }
-            resolve({ username: user.email, name: user.name });
+            resolve({ username: user.username, name: user.name });
           }
         );
       }
