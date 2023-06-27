@@ -1,9 +1,11 @@
 {
   "name": "stronger-server",
   "devDependencies": {
+    "@types/bcrypt": "^5.0.0",
     "@types/cors": "*",
     "@types/express": "*",
     "@types/jest": "*",
+    "@types/jsonwebtoken": "^9.0.2",
     "@types/node": "*",
     "@types/pg": "*",
     "@types/supertest": "*",
@@ -20,9 +22,11 @@
     "typescript": "*"
   },
   "dependencies": {
+    "bcrypt": "^5.1.0",
     "cors": "*",
     "dotenv": "*",
     "express": "*",
+    "jsonwebtoken": "^9.0.0",
     "pg": "*",
     "swagger-ui-express": "*",
     "tsoa": "*"

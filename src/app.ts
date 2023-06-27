@@ -1,4 +1,4 @@
-import express, { Router } from 'express';
+import express, { Router, ErrorRequestHandler } from 'express';
 import swaggerUi from 'swagger-ui-express';
 
 import swaggerDocument from '../build/swagger.json';
@@ -17,5 +17,14 @@ app.use('/api/v0', router);
 
 // Serve swagger UI
 app.use('/api/v0/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+
+const errorHandler: ErrorRequestHandler = (err, _req, res, _next) => {
+  res.status(err.status).json({
+    message: err.message,
+    errors: err.errors,
+    status: err.status,
+  });
+};
+app.use(errorHandler);
 
 export default app;

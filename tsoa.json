@@ -5,10 +5,21 @@
   "spec": {
     "outputDirectory": "build",
     "specVersion": 3,
-    "schemes": [ "http" ],
-    "basePath": "/api/v0"
+    "schemes": ["http"],
+    "basePath": "/api/v0",
+    "securityDefinitions": {
+      "jwt": {
+        "type": "http",
+        "scheme": "bearer",
+        "scopes": {
+          "member": "member",
+          "admin": "admin"
+        }
+      }
+    }
   },
   "routes": {
-    "routesDir": "build"
+    "routesDir": "build",
+    "authenticationModule": "./src/auth/expressAuth.ts"
   }
 }
