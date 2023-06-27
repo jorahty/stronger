@@ -3,7 +3,7 @@ import { pool } from '../db';
 
 export class PostingService {
   public async getAll(): Promise<Posting[]> {
-    let select = `
+    const select = `
       SELECT
         posting.id,
         json_build_object(

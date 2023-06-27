@@ -1,17 +1,30 @@
 import * as jwt from 'jsonwebtoken';
 import * as bcrypt from 'bcrypt';
 
+import { pool } from '../db';
 import { Credentials, JwtPayload, LoginResponse } from './auth';
 import { SessionUser } from 'src/types/custom';
-
-import users from '../../data/users.json';
 
 export class AuthService {
   public async login(
     credentials: Credentials
   ): Promise<LoginResponse | undefined> {
-    // find user
-    const user = users.find((user) => user.username === credentials.username);
+    const select = `
+      SELECT
+        member.username,
+        member.data->>'pwhash' AS pwhash,
+        member.data->>'name' AS name
+      FROM
+        member
+      WHERE
+        member.username = $1;
+    `;
+    const query = {
+      text: select,
+      values: [credentials.username],
+    };
+    const { rows } = await pool.query(query);
+    const user = rows[0];
 
     if (user && bcrypt.compareSync(credentials.password, user.pwhash)) {
       const accessToken = jwt.sign(
