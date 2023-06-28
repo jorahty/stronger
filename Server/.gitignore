@@ -1,0 +1,7 @@
+build
+node_modules
+.env
+package-lock.json
+
+# temporary
+data
