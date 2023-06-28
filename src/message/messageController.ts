@@ -11,7 +11,6 @@ import {
   Body,
 } from 'tsoa';
 
-import { UUID } from '../posting/posting';
 import { Message, NewMessage } from './message';
 import { MessageService } from './messageService';
 
