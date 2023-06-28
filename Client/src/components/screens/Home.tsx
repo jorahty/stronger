@@ -1,7 +1,7 @@
 import { Button, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
-import { useViewModel } from '../model/ViewModel';
+import { useViewModel } from '../../model/ViewModel';
 
 export default function Home() {
   const { navigate } = useNavigation<any>();
