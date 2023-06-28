@@ -4,6 +4,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Home, { HomeHeaderLeft, HomeHeaderRight } from './Home';
 import Chats from './Chats';
 import Profile from './Profile';
+import Chat from './Chat';
 
 const Stack = createNativeStackNavigator();
 
@@ -20,8 +21,21 @@ export default function NavigationStack() {
             headerRight: HomeHeaderRight,
           }}
         />
-        <Stack.Screen name="Chats" component={Chats} />
-        <Stack.Screen name="Profile" component={Profile} />
+        <Stack.Screen
+          name="Chats"
+          component={Chats}
+          options={{ headerTitleAlign: 'center' }}
+        />
+        <Stack.Screen
+          name="Profile"
+          component={Profile}
+          options={{ headerTitleAlign: 'center' }}
+        />
+        <Stack.Screen
+          name="Chat"
+          component={Chat}
+          options={{ headerTitleAlign: 'center' }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

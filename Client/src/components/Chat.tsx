@@ -1,13 +1,12 @@
 import { Button, StyleSheet, Text, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
-export default function Profile() {
+export default function Chat() {
   const { navigate } = useNavigation<any>();
   return (
     <View style={styles.container}>
-      <Text>Hello, Profile!</Text>
-      <Button onPress={() => navigate('Chat')} title="Chat" />
-      <Button onPress={() => {}} title="Edit" />
+      <Text>Hello, Chat messages!</Text>
+      <Button onPress={() => navigate('Profile')} title="Profile" />
     </View>
   );
 }

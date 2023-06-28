@@ -1,12 +1,15 @@
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Button, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 import { useViewModel } from '../model/ViewModel';
 
 export default function Home() {
+  const { navigate } = useNavigation<any>();
   return (
     <View style={styles.container}>
       <Text>Hello, Home!</Text>
+      <Button title="Chat" onPress={() => navigate('Chat')} />
+      <Button title="Profile" onPress={() => navigate('Profile')} />
     </View>
   );
 }
@@ -21,19 +24,13 @@ export const HomeHeaderLeft = () => {
 };
 
 export const HomeHeaderRight = () => {
-  const navigation = useNavigation<any>();
+  const { navigate } = useNavigation<any>();
   return (
     <View style={{ flexDirection: 'row' }}>
-      <TouchableOpacity
-        onPress={() => {
-          navigation.navigate('Profile');
-        }}>
+      <TouchableOpacity onPress={() => navigate('Profile')}>
         <Text>Profile</Text>
       </TouchableOpacity>
-      <TouchableOpacity
-        onPress={() => {
-          navigation.navigate('Chats');
-        }}>
+      <TouchableOpacity onPress={() => navigate('Chats')}>
         <Text>Chats</Text>
       </TouchableOpacity>
     </View>
