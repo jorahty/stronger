@@ -28,10 +28,9 @@ export class PostingController extends Controller {
   @Response('401', 'Unauthorized')
   @SuccessResponse('201', 'Posting created')
   public async createPosting(
-    @Body() { content }: NewPosting
-  ): // @Request() { user: { username } }: express.Request
-  Promise<Posting> {
-    // return await new PostingService().create(username, content);
-    return await new PostingService().create('kyle', content);
+    @Body() { content }: NewPosting,
+    @Request() req: express.Request
+  ): Promise<Posting> {
+    return await new PostingService().create(req.user.username, content);
   }
 }
