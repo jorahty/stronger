@@ -1,10 +1,12 @@
 import { Button, StyleSheet, Text, View } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 export default function Chats() {
+  const { navigate } = useNavigation<any>();
   return (
     <View style={styles.container}>
       <Text>Hello, Chats!</Text>
-      <Button onPress={() => {}} title="Chat" />
+      <Button onPress={() => navigate('Chat')} title="Chat" />
     </View>
   );
 }
