@@ -1,6 +1,8 @@
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
+import { useViewModel } from '../model/ViewModel';
+
 export default function Home() {
   return (
     <View style={styles.container}>
@@ -8,6 +10,15 @@ export default function Home() {
     </View>
   );
 }
+
+export const HomeHeaderLeft = () => {
+  const { logout } = useViewModel();
+  return (
+    <TouchableOpacity onPress={logout}>
+      <Text>Logout</Text>
+    </TouchableOpacity>
+  );
+};
 
 export const HomeHeaderRight = () => {
   const navigation = useNavigation<any>();

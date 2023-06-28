@@ -18,8 +18,12 @@ export default function ViewModel({ children }: Props) {
     setLoginResponse('kyle');
   };
 
+  const logout = () => {
+    setLoginResponse(null);
+  };
+
   return (
-    <ViewModelContext.Provider value={{ error, loginResponse, login }}>
+    <ViewModelContext.Provider value={{ error, loginResponse, login, logout }}>
       {children}
     </ViewModelContext.Provider>
   );
