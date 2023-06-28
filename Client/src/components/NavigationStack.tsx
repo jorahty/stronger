@@ -3,6 +3,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import Home, { HomeHeaderRight } from './Home';
 import Chats from './Chats';
+import Profile from './Profile';
 
 const Stack = createNativeStackNavigator();
 
@@ -18,6 +19,7 @@ export default function NavigationStack() {
           })}
         />
         <Stack.Screen name="Chats" component={Chats} />
+        <Stack.Screen name="Profile" component={Profile} />
       </Stack.Navigator>
     </NavigationContainer>
   );

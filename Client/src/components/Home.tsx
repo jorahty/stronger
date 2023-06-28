@@ -12,13 +12,20 @@ export default function Home() {
 export const HomeHeaderRight = () => {
   const navigation = useNavigation<any>();
   return (
-    <TouchableOpacity
-      accessibilityLabel="add message"
-      onPress={() => {
-        navigation.navigate('Chats');
-      }}>
-      <Text>Chats</Text>
-    </TouchableOpacity>
+    <View style={{ flexDirection: 'row' }}>
+      <TouchableOpacity
+        onPress={() => {
+          navigation.navigate('Profile');
+        }}>
+        <Text>Profile</Text>
+      </TouchableOpacity>
+      <TouchableOpacity
+        onPress={() => {
+          navigation.navigate('Chats');
+        }}>
+        <Text>Chats</Text>
+      </TouchableOpacity>
+    </View>
   );
 };
 
