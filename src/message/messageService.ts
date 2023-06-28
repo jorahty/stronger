@@ -26,4 +26,31 @@ export class MessageService {
     const { rows } = await pool.query(query);
     return rows;
   }
+
+  public async create(
+    sender: string,
+    receiver: string,
+    content: string
+  ): Promise<Message> {
+    const insert = `
+      INSERT INTO message (sender, receiver, data)
+      VALUES ($1, $2, $3)
+      RETURNING
+        message.id,
+        message.sender,
+        message.receiver,
+        message.data->>'content' AS content,
+        message.data->>'date' AS date
+    `;
+    const data = {
+      content: content,
+      date: new Date().toISOString(),
+    };
+    const query = {
+      text: insert,
+      values: [sender, receiver, data],
+    };
+    const { rows } = await pool.query(query);
+    return rows[0];
+  }
 }

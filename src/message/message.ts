@@ -7,3 +7,7 @@ export interface Message {
   content: string;
   date: string;
 }
+
+export interface NewMessage {
+  content: string;
+}
