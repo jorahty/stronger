@@ -1,5 +1,5 @@
 import { pool } from '../db';
-import { User } from './user';
+import { User, UserDetails } from './user';
 
 export class UserService {
   public async getWith(username: string): Promise<User[]> {
@@ -30,5 +30,27 @@ export class UserService {
     };
     const { rows } = await pool.query(query);
     return rows;
+  }
+
+  public async getDetails(username: string): Promise<UserDetails> {
+    const select = `
+      SELECT
+        username,
+        data->>'name' AS name,
+        data->>'image' AS image,
+        data->>'location' AS location,
+        data->>'website' AS website,
+        data->>'bio' AS bio
+      FROM
+        member
+      WHERE
+        username = $1;
+    `;
+    const query = {
+      text: select,
+      values: [username],
+    };
+    const { rows } = await pool.query(query);
+    return rows[0];
   }
 }
