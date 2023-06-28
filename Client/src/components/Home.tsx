@@ -1,4 +1,5 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 export default function Home() {
   return (
@@ -7,6 +8,19 @@ export default function Home() {
     </View>
   );
 }
+
+export const HomeHeaderRight = () => {
+  const navigation = useNavigation<any>();
+  return (
+    <TouchableOpacity
+      accessibilityLabel="add message"
+      onPress={() => {
+        navigation.navigate('Chats');
+      }}>
+      <Text>Chats</Text>
+    </TouchableOpacity>
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
