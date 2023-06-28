@@ -1,4 +1,3 @@
-import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 
 export default function Home() {
@@ -7,7 +6,6 @@ export default function Home() {
       <Text style={{ color: '#fff', fontWeight: '600', fontSize: 24 }}>
         Hello, Home!
       </Text>
-      <StatusBar style="auto" />
     </View>
   );
 }
