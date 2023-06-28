@@ -7,7 +7,7 @@ export default function Profile() {
     <View style={styles.container}>
       <Text>Hello, Profile!</Text>
       <Button onPress={() => navigate('Chat')} title="Chat" />
-      <Button onPress={() => {}} title="Edit" />
+      <Button onPress={() => navigate('Edit')} title="Edit" />
     </View>
   );
 }
