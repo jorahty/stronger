@@ -21,5 +21,5 @@ A platform to connect people looking for a gym partner
 
 - Start the database: `docker-compose up -d`
 - With the database running, start the dev server: `npm run dev`
-- With the dev server running, view the [API testing UI page](http://localhost:3000/v0/api-docs)
+- With the dev server running, view the [API testing UI page](http://localhost:4000/v0/api-docs)
 - Stop the database: `docker-compose down`
