@@ -1,4 +1,4 @@
-import { Posting } from './posting';
+import { NewPosting, Posting } from './posting';
 import { pool } from '../db';
 
 export class PostingService {
@@ -23,5 +23,35 @@ export class PostingService {
     };
     const { rows } = await pool.query(query);
     return rows;
+  }
+
+  public async create(poster: string, content: string): Promise<Posting> {
+    const insert = `
+      INSERT INTO posting (poster, data)
+      VALUES ($1, $2)
+      RETURNING
+        posting.id,
+        (
+          SELECT json_build_object(
+            'username', member.username,
+            'name', member.data->>'name',
+            'image', member.data->>'image'
+          )
+          FROM member
+          WHERE member.username = $1
+        ) AS poster,
+        posting.data->>'content' AS content,
+        posting.data->>'date' AS date;
+    `;
+    const data = {
+      content: content,
+      date: new Date().toISOString(),
+    };
+    const query = {
+      text: insert,
+      values: [poster, data],
+    };
+    const { rows } = await pool.query(query);
+    return rows[0];
   }
 }

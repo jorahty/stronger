@@ -10,3 +10,7 @@ export interface Posting {
   content: string;
   date: string;
 }
+
+export interface NewPosting {
+  content: string;
+}
