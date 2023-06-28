@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View } from 'react-native';
 
-export default function Edit() {
+export default function EditProfile() {
   return (
     <View style={styles.container}>
       <Text>Hello, Edit!</Text>

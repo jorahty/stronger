@@ -5,7 +5,7 @@ import Home, { HomeHeaderLeft, HomeHeaderRight } from './screens/Home';
 import Chats from './screens/Chats';
 import Profile from './screens/Profile';
 import Chat from './screens/Chat';
-import Edit from './screens/Edit';
+import EditProfile from './screens/EditProfile';
 
 const Stack = createNativeStackNavigator();
 
@@ -39,7 +39,7 @@ export default function NavigationStack() {
         />
         <Stack.Screen
           name="Edit"
-          component={Edit}
+          component={EditProfile}
           options={{ headerTitleAlign: 'center' }}
         />
       </Stack.Navigator>
