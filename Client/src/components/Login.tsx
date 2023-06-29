@@ -32,7 +32,11 @@ export default function Login() {
           onChangeText={setPassword}
           secureTextEntry={true}
         />
-        <Button onPress={() => login(username, password)} title="Login" />
+        <Button
+          onPress={() => login(username, password)}
+          title="Login"
+          disabled={username.length < 1 || password.length < 1}
+        />
         <Text>{error}</Text>
       </View>
     </View>

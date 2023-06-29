@@ -5,6 +5,9 @@ export const colors = {
 };
 
 export const styles = StyleSheet.create({
+  disabled: {
+    opacity: 0.5,
+  },
   button: {
     backgroundColor: '#08f',
     borderRadius: 15,
