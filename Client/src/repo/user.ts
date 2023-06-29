@@ -1,5 +1,16 @@
 import endpoint from './endpoint';
 
+export interface LoginResponse {
+  username: string;
+  accessToken: string;
+}
+
+export interface User {
+  username: string;
+  name: string;
+  image: string;
+}
+
 export const LOGIN = async (username: string, password: string) => {
   const response = await fetch(`${endpoint}/login`, {
     method: 'POST',

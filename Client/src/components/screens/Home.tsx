@@ -1,32 +1,18 @@
-import {
-  Button,
-  StyleSheet,
-  Text,
-  Pressable,
-  View,
-  Platform,
-} from 'react-native';
+import { Pressable, View, Platform, Text, FlatList } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { MaterialIcons } from '@expo/vector-icons';
 import { Octicons } from '@expo/vector-icons';
 
 import { useViewModel } from '../../model/ViewModel';
+import PostingCard from '../posting/Card';
 
 export default function Home() {
-  const { navigate } = useNavigation<any>();
-  const { loginResponse } = useViewModel();
+  const { postings } = useViewModel();
   return (
-    <View
-      style={{
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
-      }}>
-      <Text>Hello, Home!</Text>
-      <Text>Hello, {loginResponse.username}!</Text>
-      <Button title="Chat" onPress={() => navigate('Chat')} />
-      <Button title="Profile" onPress={() => navigate('Profile')} />
-    </View>
+    <FlatList
+      data={postings}
+      renderItem={({ item }) => <PostingCard posting={item} />}
+    />
   );
 }
 

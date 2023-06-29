@@ -1,10 +1,16 @@
 import { StyleSheet } from 'react-native';
 
 export const colors = {
-  grey: '#f5f5f5',
+  lightGrey: '#f5f5f5',
+  darkGrey: '#aaa',
+  white: '#fff',
 };
 
 export const styles = StyleSheet.create({
+  headline: {
+    fontSize: 18,
+    fontWeight: '700',
+  },
   disabled: {
     opacity: 0.5,
   },
@@ -18,18 +24,18 @@ export const styles = StyleSheet.create({
     gap: 10,
   },
   buttonIcon: {
-    color: '#fff',
+    color: colors.white,
     fontSize: 18,
   },
   buttonText: {
     fontWeight: '700',
-    color: '#fff',
+    color: colors.white,
   },
   textInput: {
     borderWidth: 2,
     padding: 15,
     borderRadius: 15,
-    borderColor: '#888',
-    backgroundColor: '#fff',
+    borderColor: colors.darkGrey,
+    backgroundColor: colors.white,
   },
 });

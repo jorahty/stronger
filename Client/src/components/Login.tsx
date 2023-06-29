@@ -17,7 +17,7 @@ export default function Login() {
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: colors.grey,
+        backgroundColor: colors.lightGrey,
       }}>
       <View style={{ width: '100%', maxWidth: 250, gap: 20 }}>
         <TextInput

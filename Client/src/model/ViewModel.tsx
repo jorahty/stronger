@@ -1,6 +1,13 @@
-import { ReactNode, createContext, useContext, useState } from 'react';
+import {
+  ReactNode,
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+} from 'react';
 
-import { LOGIN } from '../repo/member';
+import { LOGIN, LoginResponse } from '../repo/user';
+import { GET as GET_POSTINGS, Posting } from '../repo/posting';
 
 const ViewModelContext = createContext<any>(null);
 
@@ -14,7 +21,8 @@ interface Props {
 
 export default function ViewModel({ children }: Props) {
   const [error, setError] = useState<null | string>();
-  const [loginResponse, setLoginResponse] = useState<null | string>();
+  const [loginResponse, setLoginResponse] = useState<null | LoginResponse>();
+  const [postings, setPostings] = useState<Posting[]>([]);
 
   const login = (username: string, password: string) => {
     LOGIN(username, password)
@@ -31,8 +39,19 @@ export default function ViewModel({ children }: Props) {
     setLoginResponse(null);
   };
 
+  useEffect(() => {
+    const fetchData = async () => {
+      setPostings([]);
+      setPostings(await GET_POSTINGS(loginResponse!.accessToken));
+    };
+    if (loginResponse) {
+      fetchData();
+    }
+  }, [loginResponse]);
+
   return (
-    <ViewModelContext.Provider value={{ error, loginResponse, login, logout }}>
+    <ViewModelContext.Provider
+      value={{ error, loginResponse, login, logout, postings }}>
       {children}
     </ViewModelContext.Provider>
   );
