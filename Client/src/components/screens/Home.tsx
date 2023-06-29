@@ -5,9 +5,11 @@ import { useViewModel } from '../../model/ViewModel';
 
 export default function Home() {
   const { navigate } = useNavigation<any>();
+  const { loginResponse } = useViewModel();
   return (
     <View style={styles.container}>
       <Text>Hello, Home!</Text>
+      <Text>Hello, {loginResponse.username}!</Text>
       <Button title="Chat" onPress={() => navigate('Chat')} />
       <Button title="Profile" onPress={() => navigate('Profile')} />
     </View>
