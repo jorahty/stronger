@@ -1,6 +1,7 @@
 import { View, Text, Image } from 'react-native';
 import { Posting } from '../../repo/posting';
 import { colors, styles } from '../../theme/theme';
+import formatISOString from '../../util/formatISOString';
 
 interface Props {
   posting: Posting;
@@ -23,7 +24,7 @@ export default function PostingCard({ posting }: Props) {
       <View style={{ flex: 1, justifyContent: 'space-between' }}>
         <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
           <Text style={styles.headline}>{posting.poster.name}</Text>
-          <Text>3m</Text>
+          <Text>{formatISOString(posting.date)}</Text>
         </View>
         <Text>{posting.content}</Text>
       </View>
