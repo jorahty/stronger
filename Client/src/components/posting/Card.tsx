@@ -7,7 +7,7 @@ interface Props {
   posting: Posting;
 }
 
-const PlaceholderImage = require('../../../assets/favicon.png');
+const PlaceholderImage = require('../../../assets/pfp.jpeg');
 
 export default function PostingCard({ posting }: Props) {
   return (
@@ -18,9 +18,16 @@ export default function PostingCard({ posting }: Props) {
         gap: 20,
         backgroundColor: colors.white,
         borderBottomWidth: 1,
-        borderBottomColor: colors.darkGrey,
+        borderBottomColor: colors.grey,
       }}>
-      <Image source={PlaceholderImage} style={{ width: 50, height: 50 }} />
+      <Image
+        source={
+          posting.poster.image
+            ? { uri: posting.poster.image }
+            : PlaceholderImage
+        }
+        style={{ width: 60, height: 60, borderRadius: 10 }}
+      />
       <View style={{ flex: 1, justifyContent: 'space-between' }}>
         <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
           <Text style={styles.headline}>{posting.poster.name}</Text>

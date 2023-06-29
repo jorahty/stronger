@@ -2,6 +2,7 @@ import { StyleSheet } from 'react-native';
 
 export const colors = {
   lightGrey: '#f5f5f5',
+  grey: '#ccc',
   darkGrey: '#aaa',
   white: '#fff',
 };
