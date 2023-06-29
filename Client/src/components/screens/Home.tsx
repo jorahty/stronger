@@ -1,18 +1,54 @@
-import { Pressable, View, Platform, Text, FlatList } from 'react-native';
+import {
+  Pressable,
+  View,
+  Platform,
+  FlatList,
+  SafeAreaView,
+  TextInput,
+  KeyboardAvoidingView,
+} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { MaterialIcons } from '@expo/vector-icons';
 import { Octicons } from '@expo/vector-icons';
+import { FontAwesome } from '@expo/vector-icons';
 
+import { colors, styles } from '../../theme/theme';
 import { useViewModel } from '../../model/ViewModel';
 import PostingCard from '../posting/Card';
+import Button from '../common/Button';
 
 export default function Home() {
   const { postings } = useViewModel();
   return (
-    <FlatList
-      data={postings}
-      renderItem={({ item }) => <PostingCard posting={item} />}
-    />
+    <View style={{ flex: 1 }}>
+      <FlatList
+        style={{ height: 0 }}
+        data={postings}
+        renderItem={({ item }) => <PostingCard posting={item} />}
+      />
+      <KeyboardAvoidingView
+        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+        keyboardVerticalOffset={Platform.OS === 'ios' ? 94 : 0}>
+        <SafeAreaView style={{ backgroundColor: colors.white }}>
+          <View
+            style={{
+              padding: 20,
+              borderTopWidth: 1,
+              borderTopColor: colors.grey,
+              flexDirection: 'row',
+              gap: 20,
+            }}>
+            <TextInput
+              style={[styles.textInput, { flex: 1 }]}
+              placeholder="New Posting"
+            />
+            <Button
+              icon={<FontAwesome name="send" style={styles.buttonIcon} />}
+            />
+          </View>
+        </SafeAreaView>
+      </KeyboardAvoidingView>
+    </View>
   );
 }
 

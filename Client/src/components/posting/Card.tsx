@@ -28,7 +28,7 @@ export default function PostingCard({ posting }: Props) {
         }
         style={{ width: 60, height: 60, borderRadius: 10 }}
       />
-      <View style={{ flex: 1, justifyContent: 'space-between' }}>
+      <View style={{ flex: 1, justifyContent: 'space-around' }}>
         <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
           <Text style={styles.headline}>{posting.poster.name}</Text>
           <Text>{formatISOString(posting.date)}</Text>

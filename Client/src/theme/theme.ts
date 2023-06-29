@@ -33,6 +33,7 @@ export const styles = StyleSheet.create({
     color: colors.white,
   },
   textInput: {
+    outlineStyle: 'none',
     borderWidth: 2,
     padding: 15,
     borderRadius: 15,
