@@ -35,7 +35,7 @@ export class AuthService {
           algorithm: 'HS256',
         }
       );
-      return { username: user.name, accessToken: accessToken };
+      return { username: user.username, accessToken: accessToken };
     } else {
       return undefined;
     }
