@@ -1,3 +1,4 @@
+import { StatusBar } from 'expo-status-bar';
 import { View } from 'react-native';
 import Main from './src/components/Main';
 import ViewModel from './src/model/ViewModel';
@@ -16,6 +17,7 @@ export default function App() {
           <Main />
         </ViewModel>
       </View>
+      <StatusBar style="dark" />
     </View>
   );
 }
