@@ -17,7 +17,7 @@ export default function Button({ title, icon, onPress, disabled }: Props) {
       onPress={onPress}
       disabled={disabled}>
       {icon}
-      <Text style={styles.buttonText}>{title}</Text>
+      {title && <Text style={styles.buttonText}>{title}</Text>}
     </Pressable>
   );
 }
