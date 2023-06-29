@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Text, TextInput, View } from 'react-native';
+import { Entypo } from '@expo/vector-icons';
 
 import { useViewModel } from '../model/ViewModel';
 import { colors, styles } from '../theme/theme';
@@ -33,8 +34,9 @@ export default function Login() {
           secureTextEntry={true}
         />
         <Button
-          onPress={() => login(username, password)}
           title="Login"
+          icon={<Entypo name="login" style={styles.buttonIcon} />}
+          onPress={() => login(username, password)}
           disabled={username.length < 1 || password.length < 1}
         />
         <Text>{error}</Text>

@@ -16,7 +16,12 @@ export default function Home() {
   const { navigate } = useNavigation<any>();
   const { loginResponse } = useViewModel();
   return (
-    <View style={styles.container}>
+    <View
+      style={{
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+      }}>
       <Text>Hello, Home!</Text>
       <Text>Hello, {loginResponse.username}!</Text>
       <Button title="Chat" onPress={() => navigate('Chat')} />
@@ -53,11 +58,3 @@ export const HomeHeaderRight = () => {
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});

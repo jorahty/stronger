@@ -14,6 +14,12 @@ export const styles = StyleSheet.create({
     padding: 15,
     flexDirection: 'row',
     justifyContent: 'center',
+    alignItems: 'center',
+    gap: 10,
+  },
+  buttonIcon: {
+    color: '#fff',
+    fontSize: 18,
   },
   buttonText: {
     fontWeight: '700',
