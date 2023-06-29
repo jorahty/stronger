@@ -35,10 +35,10 @@ export const HomeHeaderRight = () => {
         { flexDirection: 'row', gap: 20 },
         Platform.OS === 'web' && { paddingRight: 20 },
       ]}>
-      <Pressable onPress={() => navigate('Profile')}>
+      <Pressable onPress={() => navigate('Chats')}>
         <MaterialIcons name="chat-bubble-outline" size={24} />
       </Pressable>
-      <Pressable onPress={() => navigate('Chats')}>
+      <Pressable onPress={() => navigate('Profile')}>
         <Octicons name="person" size={24} />
       </Pressable>
     </View>
