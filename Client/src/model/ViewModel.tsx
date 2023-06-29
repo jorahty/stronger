@@ -1,5 +1,7 @@
 import { ReactNode, createContext, useContext, useState } from 'react';
 
+import { LOGIN } from '../repo/member';
+
 const ViewModelContext = createContext<any>(null);
 
 export function useViewModel() {
@@ -11,11 +13,18 @@ interface Props {
 }
 
 export default function ViewModel({ children }: Props) {
-  const [error, setError] = useState();
+  const [error, setError] = useState<null | string>();
   const [loginResponse, setLoginResponse] = useState<null | string>();
 
-  const login = () => {
-    setLoginResponse('kyle');
+  const login = (username: string, password: string) => {
+    LOGIN(username, password)
+      .then((response) => {
+        setLoginResponse(response);
+        setError(null);
+      })
+      .catch((err) => {
+        setError(err.message);
+      });
   };
 
   const logout = () => {
