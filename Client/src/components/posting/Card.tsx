@@ -1,4 +1,4 @@
-import { View, Text, Image, Pressable } from 'react-native';
+import { View, Text, Image, TouchableOpacity } from 'react-native';
 import { Posting } from '../../repo/posting';
 import { colors, styles } from '../../theme/theme';
 import formatISOString from '../../util/formatISOString';
@@ -12,7 +12,7 @@ const PlaceholderImage = require('../../../assets/pfp.jpeg');
 
 export default function PostingCard({ posting, setSelectedPosting }: Props) {
   return (
-    <Pressable
+    <TouchableOpacity
       onPress={() => setSelectedPosting(posting)}
       style={{
         flexDirection: 'row',
@@ -37,6 +37,6 @@ export default function PostingCard({ posting, setSelectedPosting }: Props) {
         </View>
         <Text>{posting.content}</Text>
       </View>
-    </Pressable>
+    </TouchableOpacity>
   );
 }
