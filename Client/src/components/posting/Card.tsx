@@ -1,17 +1,19 @@
-import { View, Text, Image } from 'react-native';
+import { View, Text, Image, Pressable } from 'react-native';
 import { Posting } from '../../repo/posting';
 import { colors, styles } from '../../theme/theme';
 import formatISOString from '../../util/formatISOString';
 
 interface Props {
   posting: Posting;
+  setSelectedPosting: (posting: Posting) => void;
 }
 
 const PlaceholderImage = require('../../../assets/pfp.jpeg');
 
-export default function PostingCard({ posting }: Props) {
+export default function PostingCard({ posting, setSelectedPosting }: Props) {
   return (
-    <View
+    <Pressable
+      onPress={() => setSelectedPosting(posting)}
       style={{
         flexDirection: 'row',
         padding: 20,
@@ -35,6 +37,6 @@ export default function PostingCard({ posting }: Props) {
         </View>
         <Text>{posting.content}</Text>
       </View>
-    </View>
+    </Pressable>
   );
 }

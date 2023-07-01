@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Pressable, View, Platform, FlatList } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { MaterialIcons } from '@expo/vector-icons';
@@ -6,18 +7,27 @@ import { Octicons } from '@expo/vector-icons';
 import { useViewModel } from '../../model/ViewModel';
 import PostingCard from '../posting/Card';
 import PostingCreate from '../posting/Create';
+import { Posting } from '../../repo/posting';
+import PostingMenu from '../posting/Menu';
 
 export default function Home() {
   const { postings } = useViewModel();
+  const [selectedPosting, setSelectedPosting] = useState<null | Posting>(null);
 
   return (
     <View style={{ flex: 1 }}>
       <FlatList
         style={{ height: 0 }}
         data={postings}
-        renderItem={({ item }) => <PostingCard posting={item} />}
+        renderItem={({ item }) => (
+          <PostingCard posting={item} setSelectedPosting={setSelectedPosting} />
+        )}
       />
       <PostingCreate />
+      <PostingMenu
+        selectedPosting={selectedPosting}
+        setSelectedPosting={setSelectedPosting}
+      />
     </View>
   );
 }

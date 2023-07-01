@@ -12,7 +12,7 @@ export default function App() {
         justifyContent: 'center',
         backgroundColor: '#ddd',
       }}>
-      <View style={{ flex: 1, maxWidth: 900, backgroundColor: '#fff' }}>
+      <View style={{ flex: 1, maxWidth: 900 }}>
         <ViewModel>
           <Main />
         </ViewModel>
