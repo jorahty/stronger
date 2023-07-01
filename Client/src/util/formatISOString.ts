@@ -7,8 +7,10 @@ export default function formatISOString(dateString: string): string {
   const diffInMinutes = Math.floor(diffInSeconds / 60);
   const diffInHours = Math.floor(diffInMinutes / 60);
 
-  if (diffInMinutes < 60) {
-    return `${diffInMinutes}s`;
+  if (diffInSeconds < 60) {
+    return `${diffInSeconds}s`;
+  } else if (diffInMinutes < 60) {
+    return `${diffInMinutes}m`;
   } else if (diffInHours < 24) {
     return `${diffInHours}h`;
   } else if (date.getFullYear() === now.getFullYear()) {
