@@ -4,6 +4,7 @@ export const colors = {
   lightGrey: '#f5f5f5',
   grey: '#ccc',
   darkGrey: '#aaa',
+  deepGrey: '#777',
   white: '#fff',
 };
 
@@ -24,13 +25,21 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     gap: 10,
   },
+  buttonText: {
+    fontWeight: '700',
+    color: colors.white,
+  },
   buttonIcon: {
     color: colors.white,
     fontSize: 18,
   },
-  buttonText: {
-    fontWeight: '700',
-    color: colors.white,
+  buttonOutlined: {
+    backgroundColor: 'transparent',
+    borderWidth: 2,
+    borderColor: colors.darkGrey,
+  },
+  buttenTextOutlined: {
+    color: colors.deepGrey,
   },
   textInput: {
     borderWidth: 2,

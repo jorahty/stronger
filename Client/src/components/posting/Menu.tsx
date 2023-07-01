@@ -1,6 +1,7 @@
 import { Modal, Pressable, SafeAreaView, View } from 'react-native';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
-import { colors } from '../../theme/theme';
+import { colors, styles } from '../../theme/theme';
 import { Posting } from '../../repo/posting';
 import Button from '../common/Button';
 
@@ -37,7 +38,21 @@ export default function PostingMenu({
           <View style={{ padding: 20, gap: 20 }}>
             <Button title="close" />
             <Button title="close" />
-            <Button title="close" />
+            <Button
+              title="Close"
+              onPress={close}
+              outlined
+              icon={
+                <MaterialCommunityIcons
+                  name="close-circle-outline"
+                  style={[
+                    styles.buttonIcon,
+                    { fontSize: 24 },
+                    styles.buttenTextOutlined,
+                  ]}
+                />
+              }
+            />
           </View>
         </SafeAreaView>
       </Pressable>
