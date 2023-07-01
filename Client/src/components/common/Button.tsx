@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import { Pressable, Text } from 'react-native';
+import { TouchableOpacity, Text } from 'react-native';
 
 import { styles } from '../../theme/theme';
 
@@ -21,7 +21,7 @@ export default function Button({
   destructive,
 }: Props) {
   return (
-    <Pressable
+    <TouchableOpacity
       style={[
         styles.button,
         outlined && styles.buttonOutlined,
@@ -37,6 +37,6 @@ export default function Button({
           {title}
         </Text>
       )}
-    </Pressable>
+    </TouchableOpacity>
   );
 }
