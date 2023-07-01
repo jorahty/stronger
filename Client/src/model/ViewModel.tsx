@@ -7,7 +7,11 @@ import {
 } from 'react';
 
 import { LOGIN, LoginResponse } from '../repo/user';
-import { GET as GET_POSTINGS, Posting } from '../repo/posting';
+import {
+  CREATE as CREATE_POSTING,
+  GET as GET_POSTINGS,
+  Posting,
+} from '../repo/posting';
 
 const ViewModelContext = createContext<any>(null);
 
@@ -49,9 +53,16 @@ export default function ViewModel({ children }: Props) {
     }
   }, [loginResponse]);
 
+  const createPosting = async (content: string) => {
+    const posting = await CREATE_POSTING(loginResponse!.accessToken, {
+      content,
+    });
+    setPostings([posting, ...postings]);
+  };
+
   return (
     <ViewModelContext.Provider
-      value={{ error, loginResponse, login, logout, postings }}>
+      value={{ error, loginResponse, login, logout, postings, createPosting }}>
       {children}
     </ViewModelContext.Provider>
   );

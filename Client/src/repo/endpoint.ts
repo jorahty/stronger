@@ -1,3 +1,3 @@
-const endpoint = 'http://100.64.19.172:4000/api/v0';
+const endpoint = 'http://169.233.238.26:4000/api/v0';
 
 export default endpoint;

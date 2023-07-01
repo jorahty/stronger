@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import {
   Pressable,
   View,
@@ -6,6 +7,7 @@ import {
   SafeAreaView,
   TextInput,
   KeyboardAvoidingView,
+  Keyboard,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { MaterialIcons } from '@expo/vector-icons';
@@ -18,7 +20,15 @@ import PostingCard from '../posting/Card';
 import Button from '../common/Button';
 
 export default function Home() {
-  const { postings } = useViewModel();
+  const { postings, createPosting } = useViewModel();
+  const [content, setContent] = useState('');
+
+  const sendPosting = () => {
+    createPosting(content);
+    setContent('');
+    Keyboard.dismiss();
+  };
+
   return (
     <View style={{ flex: 1 }}>
       <FlatList
@@ -41,9 +51,14 @@ export default function Home() {
             <TextInput
               style={[styles.textInput, { flex: 1 }]}
               placeholder="New Posting"
+              value={content}
+              onChangeText={setContent}
+              onSubmitEditing={content ? sendPosting : undefined}
             />
             <Button
               icon={<FontAwesome name="send" style={styles.buttonIcon} />}
+              onPress={sendPosting}
+              disabled={content.length < 1}
             />
           </View>
         </SafeAreaView>
