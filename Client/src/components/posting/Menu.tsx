@@ -29,56 +29,62 @@ export default function PostingMenu({
   };
 
   return (
-    <Modal visible={selectedPosting !== null} transparent animationType="slide">
+    <Modal visible={selectedPosting !== null} transparent>
       <Pressable
         onPress={close}
         style={{
           flex: 1,
-          justifyContent: 'flex-end',
           alignItems: 'center',
         }}>
-        <SafeAreaView
+        <View
           style={{
+            backgroundColor: '#00000077',
+            flex: 1,
+            justifyContent: 'flex-end',
             width: '100%',
             maxWidth: 900,
-            backgroundColor: colors.white,
-            borderTopWidth: 2,
-            borderColor: colors.grey,
           }}>
-          <View style={{ padding: 20, gap: 20 }}>
-            {selectedPosting?.poster.username === loginResponse.username ? (
+          <SafeAreaView
+            style={{
+              backgroundColor: colors.white,
+              borderTopWidth: 2,
+              borderColor: colors.grey,
+            }}>
+            <View style={{ padding: 20, gap: 20 }}>
+              {selectedPosting?.poster.username === loginResponse.username ? (
+                <Button
+                  title="Remove Posting"
+                  icon={<FontAwesome name="trash" style={styles.buttonIcon} />}
+                  destructive
+                />
+              ) : (
+                <>
+                  <Button
+                    title={`Send Message to ${selectedPosting?.poster.name}`}
+                    icon={
+                      <Ionicons name="chatbubbles" style={styles.buttonIcon} />
+                    }
+                  />
+                  <Button
+                    title={`View ${selectedPosting?.poster.name}'s Profile`}
+                    icon={<Ionicons name="person" style={styles.buttonIcon} />}
+                  />
+                </>
+              )}
               <Button
-                title="Remove Posting"
-                icon={<FontAwesome name="trash" style={styles.buttonIcon} />}
-                destructive
+                title="Close"
+                onPress={close}
+                outlined
+                icon={
+                  <FontAwesome
+                    name="close"
+                    style={[styles.buttonIcon, styles.buttenTextOutlined]}
+                  />
+                }
               />
-            ) : (
-              <>
-                <Button
-                  title={`Send Message to ${selectedPosting?.poster.name}`}
-                  icon={
-                    <Ionicons name="chatbubbles" style={styles.buttonIcon} />
-                  }
-                />
-                <Button
-                  title={`View ${selectedPosting?.poster.name}'s Profile`}
-                  icon={<Ionicons name="person" style={styles.buttonIcon} />}
-                />
-              </>
-            )}
-            <Button
-              title="Close"
-              onPress={close}
-              outlined
-              icon={
-                <FontAwesome
-                  name="close"
-                  style={[styles.buttonIcon, styles.buttenTextOutlined]}
-                />
-              }
-            />
-          </View>
-        </SafeAreaView>
+            </View>
+          </SafeAreaView>
+        </View>
       </Pressable>
     </Modal>
   );
