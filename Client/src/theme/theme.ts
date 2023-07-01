@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import { Platform, StyleSheet } from 'react-native';
 
 export const colors = {
   lightGrey: '#f5f5f5',
@@ -33,7 +33,6 @@ export const styles = StyleSheet.create({
     color: colors.white,
   },
   textInput: {
-    outlineStyle: 'none',
     borderWidth: 2,
     padding: 15,
     borderRadius: 15,
