@@ -6,9 +6,13 @@ export const colors = {
   darkGrey: '#aaa',
   deepGrey: '#777',
   white: '#fff',
+  danger: '#e45',
 };
 
 export const styles = StyleSheet.create({
+  destructive: {
+    backgroundColor: colors.danger,
+  },
   headline: {
     fontSize: 18,
     fontWeight: '700',

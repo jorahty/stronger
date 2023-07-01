@@ -9,6 +9,7 @@ interface Props {
   onPress?: () => void;
   disabled?: boolean;
   outlined?: boolean;
+  destructive?: boolean;
 }
 
 export default function Button({
@@ -17,6 +18,7 @@ export default function Button({
   onPress,
   disabled,
   outlined,
+  destructive,
 }: Props) {
   return (
     <Pressable
@@ -24,6 +26,7 @@ export default function Button({
         styles.button,
         outlined && styles.buttonOutlined,
         disabled && styles.disabled,
+        destructive && styles.destructive,
       ]}
       onPress={onPress}
       disabled={disabled}>

@@ -1,9 +1,17 @@
 import { Modal, Pressable, SafeAreaView, View } from 'react-native';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
+import {
+  Ionicons,
+  MaterialCommunityIcons,
+  MaterialIcons,
+} from '@expo/vector-icons';
+import { FontAwesome5 } from '@expo/vector-icons';
+import { FontAwesome } from '@expo/vector-icons';
+import { AntDesign } from '@expo/vector-icons';
 
 import { colors, styles } from '../../theme/theme';
 import { Posting } from '../../repo/posting';
 import Button from '../common/Button';
+import { useViewModel } from '../../model/ViewModel';
 
 interface Props {
   selectedPosting: null | Posting;
@@ -14,6 +22,8 @@ export default function PostingMenu({
   selectedPosting,
   setSelectedPosting,
 }: Props) {
+  const { loginResponse } = useViewModel();
+
   const close = () => {
     setSelectedPosting(null);
   };
@@ -36,20 +46,34 @@ export default function PostingMenu({
             borderColor: colors.grey,
           }}>
           <View style={{ padding: 20, gap: 20 }}>
-            <Button title="close" />
-            <Button title="close" />
+            {selectedPosting?.poster.username === loginResponse.username ? (
+              <Button
+                title="Remove Posting"
+                icon={<FontAwesome name="trash" style={styles.buttonIcon} />}
+                destructive
+              />
+            ) : (
+              <>
+                <Button
+                  title={`Send Message to ${selectedPosting?.poster.name}`}
+                  icon={
+                    <Ionicons name="chatbubbles" style={styles.buttonIcon} />
+                  }
+                />
+                <Button
+                  title={`View ${selectedPosting?.poster.name}'s Profile`}
+                  icon={<Ionicons name="person" style={styles.buttonIcon} />}
+                />
+              </>
+            )}
             <Button
               title="Close"
               onPress={close}
               outlined
               icon={
-                <MaterialCommunityIcons
-                  name="close-circle-outline"
-                  style={[
-                    styles.buttonIcon,
-                    { fontSize: 24 },
-                    styles.buttenTextOutlined,
-                  ]}
+                <FontAwesome
+                  name="close"
+                  style={[styles.buttonIcon, styles.buttenTextOutlined]}
                 />
               }
             />
