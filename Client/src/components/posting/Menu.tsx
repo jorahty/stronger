@@ -22,9 +22,14 @@ export default function PostingMenu({
   selectedPosting,
   setSelectedPosting,
 }: Props) {
-  const { loginResponse } = useViewModel();
+  const { loginResponse, deletePosting } = useViewModel();
 
   const close = () => {
+    setSelectedPosting(null);
+  };
+
+  const removePosting = () => {
+    deletePosting(selectedPosting?.id);
     setSelectedPosting(null);
   };
 
@@ -54,6 +59,7 @@ export default function PostingMenu({
               {selectedPosting?.poster.username === loginResponse.username ? (
                 <Button
                   title="Remove Posting"
+                  onPress={removePosting}
                   icon={<FontAwesome name="trash" style={styles.buttonIcon} />}
                   destructive
                 />

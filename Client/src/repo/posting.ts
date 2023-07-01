@@ -37,3 +37,12 @@ export const CREATE = async (token: string, newPosting: NewPosting) => {
   const posting = await response.json();
   return posting;
 };
+
+export const DELETE = async (token: string, id: string) => {
+  await fetch(`${endpoint}/posting/${id}`, {
+    method: 'DELETE',
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+};

@@ -8,9 +8,10 @@ import {
 
 import { LOGIN, LoginResponse } from '../repo/user';
 import {
-  CREATE as CREATE_POSTING,
-  GET as GET_POSTINGS,
   Posting,
+  GET as GET_POSTINGS,
+  CREATE as CREATE_POSTING,
+  DELETE as DELETE_POSTING,
 } from '../repo/posting';
 
 const ViewModelContext = createContext<any>(null);
@@ -60,9 +61,22 @@ export default function ViewModel({ children }: Props) {
     setPostings([posting, ...postings]);
   };
 
+  const deletePosting = async (id: string) => {
+    await DELETE_POSTING(loginResponse!.accessToken, id);
+    setPostings(postings.filter((posting) => posting.id !== id));
+  };
+
   return (
     <ViewModelContext.Provider
-      value={{ error, loginResponse, login, logout, postings, createPosting }}>
+      value={{
+        error,
+        loginResponse,
+        login,
+        logout,
+        postings,
+        createPosting,
+        deletePosting,
+      }}>
       {children}
     </ViewModelContext.Provider>
   );
