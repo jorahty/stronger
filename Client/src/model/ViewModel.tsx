@@ -6,7 +6,7 @@ import {
   useState,
 } from 'react';
 
-import { LOGIN, LoginResponse } from '../repo/user';
+import { LOGIN, LoginResponse, User } from '../repo/user';
 import {
   Posting,
   GET as GET_POSTINGS,
@@ -28,6 +28,7 @@ export default function ViewModel({ children }: Props) {
   const [error, setError] = useState<null | string>();
   const [loginResponse, setLoginResponse] = useState<null | LoginResponse>();
   const [postings, setPostings] = useState<Posting[]>([]);
+  const [selectedUser, setSelectedUser] = useState<null | User>(null);
 
   const login = (username: string, password: string) => {
     LOGIN(username, password)
@@ -66,6 +67,14 @@ export default function ViewModel({ children }: Props) {
     setPostings(postings.filter((posting) => posting.id !== id));
   };
 
+  const selectUser = (user: User) => {
+    setSelectedUser(user);
+    // setMessages([]);
+    // setProfile(null);
+    // setMessages(GET);
+    // setProfile(GET);
+  };
+
   return (
     <ViewModelContext.Provider
       value={{
@@ -76,6 +85,8 @@ export default function ViewModel({ children }: Props) {
         postings,
         createPosting,
         deletePosting,
+        selectedUser,
+        selectUser,
       }}>
       {children}
     </ViewModelContext.Provider>

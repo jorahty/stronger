@@ -1,11 +1,14 @@
 import { Button, StyleSheet, Text, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
+import { useViewModel } from '../../model/ViewModel';
+
 export default function Chat() {
+  const { selectedUser } = useViewModel();
   const { navigate } = useNavigation<any>();
   return (
     <View style={styles.container}>
-      <Text>Hello, Chat messages!</Text>
+      <Text>Messages with {selectedUser.name}</Text>
       <Button onPress={() => navigate('Profile')} title="Profile" />
     </View>
   );

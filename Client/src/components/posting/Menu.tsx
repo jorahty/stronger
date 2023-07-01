@@ -1,12 +1,6 @@
 import { Modal, Pressable, SafeAreaView, View } from 'react-native';
-import {
-  Ionicons,
-  MaterialCommunityIcons,
-  MaterialIcons,
-} from '@expo/vector-icons';
-import { FontAwesome5 } from '@expo/vector-icons';
-import { FontAwesome } from '@expo/vector-icons';
-import { AntDesign } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
+import { Ionicons, FontAwesome } from '@expo/vector-icons';
 
 import { colors, styles } from '../../theme/theme';
 import { Posting } from '../../repo/posting';
@@ -22,7 +16,8 @@ export default function PostingMenu({
   selectedPosting,
   setSelectedPosting,
 }: Props) {
-  const { loginResponse, deletePosting } = useViewModel();
+  const { loginResponse, deletePosting, selectUser } = useViewModel();
+  const { navigate } = useNavigation<any>();
 
   const close = () => {
     setSelectedPosting(null);
@@ -30,7 +25,19 @@ export default function PostingMenu({
 
   const removePosting = () => {
     deletePosting(selectedPosting?.id);
-    setSelectedPosting(null);
+    close();
+  };
+
+  const messageUser = () => {
+    selectUser(selectedPosting?.poster);
+    navigate('Chat');
+    close();
+  };
+
+  const viewUser = () => {
+    selectUser(selectedPosting?.poster);
+    navigate('Profile');
+    close();
   };
 
   return (
@@ -67,12 +74,14 @@ export default function PostingMenu({
                 <>
                   <Button
                     title={`Send Message to ${selectedPosting?.poster.name}`}
+                    onPress={messageUser}
                     icon={
                       <Ionicons name="chatbubbles" style={styles.buttonIcon} />
                     }
                   />
                   <Button
                     title={`View ${selectedPosting?.poster.name}'s Profile`}
+                    onPress={viewUser}
                     icon={<Ionicons name="person" style={styles.buttonIcon} />}
                   />
                 </>
