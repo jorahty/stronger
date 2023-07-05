@@ -8,6 +8,7 @@ import {
   View,
 } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { colors, styles } from '../../theme/theme';
 import { useViewModel } from '../../model/ViewModel';
@@ -23,11 +24,14 @@ export default function PostingCreate() {
     Keyboard.dismiss();
   };
 
+  const insets = useSafeAreaInsets();
+
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
       keyboardVerticalOffset={Platform.OS === 'ios' ? 94 : 0}>
-      <SafeAreaView style={{ backgroundColor: colors.white }}>
+      <View
+        style={{ backgroundColor: colors.white, paddingBottom: insets.bottom }}>
         <View
           style={{
             padding: 20,
@@ -49,7 +53,7 @@ export default function PostingCreate() {
             disabled={content.length < 1}
           />
         </View>
-      </SafeAreaView>
+      </View>
     </KeyboardAvoidingView>
   );
 }
