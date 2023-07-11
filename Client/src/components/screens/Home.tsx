@@ -6,7 +6,7 @@ import { Octicons } from '@expo/vector-icons';
 
 import { useViewModel } from '../../model/ViewModel';
 import PostingCard from '../posting/Card';
-import PostingCreate from '../posting/Create';
+import PostingInput from '../posting/Input';
 import { Posting } from '../../repo/posting';
 import PostingMenu from '../posting/Menu';
 
@@ -23,7 +23,7 @@ export default function Home() {
           <PostingCard posting={item} setSelectedPosting={setSelectedPosting} />
         )}
       />
-      <PostingCreate />
+      <PostingInput />
       <PostingMenu
         selectedPosting={selectedPosting}
         setSelectedPosting={setSelectedPosting}

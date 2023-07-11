@@ -13,12 +13,12 @@ import { colors, styles } from '../../theme/theme';
 import { useViewModel } from '../../model/ViewModel';
 import Button from '../common/Button';
 
-export default function MessageCreate() {
-  // const { createPosting } = useViewModel();
+export default function PostingInput() {
+  const { createPosting } = useViewModel();
   const [content, setContent] = useState('');
 
-  const sendMessage = () => {
-    // createMessage(content);
+  const sendPosting = () => {
+    createPosting(content);
     setContent('');
     Keyboard.dismiss();
   };
@@ -41,14 +41,14 @@ export default function MessageCreate() {
           }}>
           <TextInput
             style={[styles.textInput, { flex: 1 }]}
-            placeholder="Message"
+            placeholder="New Posting"
             value={content}
             onChangeText={setContent}
-            onSubmitEditing={content ? sendMessage : undefined}
+            onSubmitEditing={content ? sendPosting : undefined}
           />
           <Button
-            icon={<FontAwesome name="send" style={styles.buttonIcon} />}
-            onPress={sendMessage}
+            icon={<FontAwesome name="plus" style={styles.buttonIcon} />}
+            onPress={sendPosting}
             disabled={content.length < 1}
           />
         </View>

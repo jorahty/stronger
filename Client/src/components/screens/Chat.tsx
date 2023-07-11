@@ -4,7 +4,7 @@ import { useNavigation } from '@react-navigation/native';
 import { colors, styles } from '../../theme/theme';
 import { useViewModel } from '../../model/ViewModel';
 import MessageCard from '../message/Card';
-import MessageCreate from '../message/Create';
+import MessageInput from '../message/Input';
 
 const PlaceholderImage = require('../../../assets/pfp.jpeg');
 
@@ -39,7 +39,7 @@ export default function Chat() {
         data={messages}
         renderItem={({ item }) => <MessageCard key={item.id} message={item} />}
       />
-      <MessageCreate />
+      <MessageInput />
     </View>
   );
 }
