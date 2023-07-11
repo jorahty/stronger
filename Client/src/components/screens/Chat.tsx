@@ -2,7 +2,6 @@ import { FlatList, Image, Text, TouchableOpacity, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 import { colors, styles } from '../../theme/theme';
-import { Message } from '../../repo/message';
 import { useViewModel } from '../../model/ViewModel';
 import MessageCard from '../message/Card';
 
