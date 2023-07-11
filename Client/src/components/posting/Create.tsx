@@ -3,7 +3,6 @@ import {
   Keyboard,
   KeyboardAvoidingView,
   Platform,
-  SafeAreaView,
   TextInput,
   View,
 } from 'react-native';
@@ -48,7 +47,7 @@ export default function PostingCreate() {
             onSubmitEditing={content ? sendPosting : undefined}
           />
           <Button
-            icon={<FontAwesome name="send" style={styles.buttonIcon} />}
+            icon={<FontAwesome name="plus" style={styles.buttonIcon} />}
             onPress={sendPosting}
             disabled={content.length < 1}
           />
