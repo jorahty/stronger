@@ -13,7 +13,11 @@ import {
   CREATE as CREATE_POSTING,
   DELETE as DELETE_POSTING,
 } from '../repo/posting';
-import { Message, GET as GET_MESSAGES } from '../repo/message';
+import {
+  Message,
+  GET as GET_MESSAGES,
+  CREATE as CREATE_MESSAGE,
+} from '../repo/message';
 
 const ViewModelContext = createContext<any>(null);
 
@@ -77,6 +81,17 @@ export default function ViewModel({ children }: Props) {
     // setProfile(GET);
   };
 
+  const createMessage = async (content: string) => {
+    const message = await CREATE_MESSAGE(
+      loginResponse!.accessToken,
+      selectedUser!.username,
+      {
+        content,
+      }
+    );
+    setMessages([...messages, message]);
+  };
+
   return (
     <ViewModelContext.Provider
       value={{
@@ -90,6 +105,7 @@ export default function ViewModel({ children }: Props) {
         selectedUser,
         selectUser,
         messages,
+        createMessage,
       }}>
       {children}
     </ViewModelContext.Provider>

@@ -8,6 +8,10 @@ export interface Message {
   date: string;
 }
 
+interface NewMessage {
+  content: string;
+}
+
 export const GET = async (token: string, username: string) => {
   const response = await fetch(`${endpoint}/message/${username}`, {
     method: 'GET',
@@ -19,4 +23,21 @@ export const GET = async (token: string, username: string) => {
   return messages.sort(
     (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()
   );
+};
+
+export const CREATE = async (
+  token: string,
+  username: string,
+  newMessage: NewMessage
+) => {
+  const response = await fetch(`${endpoint}/message/${username}`, {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(newMessage),
+  });
+  const message = await response.json();
+  return message;
 };

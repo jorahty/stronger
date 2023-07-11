@@ -14,11 +14,11 @@ import { useViewModel } from '../../model/ViewModel';
 import Button from '../common/Button';
 
 export default function MessageInput() {
-  // const { createPosting } = useViewModel();
+  const { createMessage } = useViewModel();
   const [content, setContent] = useState('');
 
   const sendMessage = () => {
-    // createMessage(content);
+    createMessage(content);
     setContent('');
     Keyboard.dismiss();
   };
