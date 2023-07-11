@@ -1,23 +1,21 @@
-import { Button, StyleSheet, Text, View } from 'react-native';
+import { Button, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
+import { Message } from '../../repo/message';
 import { useViewModel } from '../../model/ViewModel';
+import MessageCard from '../message/Card';
 
 export default function Chat() {
-  const { selectedUser } = useViewModel();
+  const { selectedUser, messages } = useViewModel();
   const { navigate } = useNavigation<any>();
   return (
-    <View style={styles.container}>
-      <Text>Messages with {selectedUser.name}</Text>
-      <Button onPress={() => navigate('Profile')} title="Profile" />
+    <View>
+      <TouchableOpacity onPress={() => navigate('Profile')}>
+        <Text>{selectedUser.name}</Text>
+      </TouchableOpacity>
+      {messages.map((message: Message) => (
+        <MessageCard key={message.id} message={message} />
+      ))}
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});

@@ -13,6 +13,7 @@ import {
   CREATE as CREATE_POSTING,
   DELETE as DELETE_POSTING,
 } from '../repo/posting';
+import { Message, GET as GET_MESSAGES } from '../repo/message';
 
 const ViewModelContext = createContext<any>(null);
 
@@ -29,6 +30,7 @@ export default function ViewModel({ children }: Props) {
   const [loginResponse, setLoginResponse] = useState<null | LoginResponse>();
   const [postings, setPostings] = useState<Posting[]>([]);
   const [selectedUser, setSelectedUser] = useState<null | User>(null);
+  const [messages, setMessages] = useState<Message[]>([]);
 
   const login = (username: string, password: string) => {
     LOGIN(username, password)
@@ -67,11 +69,11 @@ export default function ViewModel({ children }: Props) {
     setPostings(postings.filter((posting) => posting.id !== id));
   };
 
-  const selectUser = (user: User) => {
+  const selectUser = async (user: User) => {
     setSelectedUser(user);
-    // setMessages([]);
+    setMessages([]);
     // setProfile(null);
-    // setMessages(GET);
+    setMessages(await GET_MESSAGES(loginResponse!.accessToken, user.username));
     // setProfile(GET);
   };
 
@@ -87,6 +89,7 @@ export default function ViewModel({ children }: Props) {
         deletePosting,
         selectedUser,
         selectUser,
+        messages,
       }}>
       {children}
     </ViewModelContext.Provider>
