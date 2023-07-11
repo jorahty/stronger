@@ -1,4 +1,4 @@
-import { Image, Text, TouchableOpacity, View } from 'react-native';
+import { FlatList, Image, Text, TouchableOpacity, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 import { colors, styles } from '../../theme/theme';
@@ -12,7 +12,7 @@ export default function Chat() {
   const { selectedUser, messages } = useViewModel();
   const { navigate } = useNavigation<any>();
   return (
-    <View>
+    <View style={{ flex: 1 }}>
       <TouchableOpacity
         onPress={() => navigate('Profile')}
         style={{
@@ -33,9 +33,12 @@ export default function Chat() {
         />
         <Text style={styles.headline}>{selectedUser.name}</Text>
       </TouchableOpacity>
-      {messages.map((message: Message) => (
-        <MessageCard key={message.id} message={message} />
-      ))}
+      <FlatList
+        contentContainerStyle={{ padding: 20 }}
+        style={{ height: 0 }}
+        data={messages}
+        renderItem={({ item }) => <MessageCard key={item.id} message={item} />}
+      />
     </View>
   );
 }
