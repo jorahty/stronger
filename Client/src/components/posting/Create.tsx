@@ -27,13 +27,13 @@ export default function PostingCreate() {
   const insets = useSafeAreaInsets();
 
   return (
-    <KeyboardAvoidingView
-      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-      keyboardVerticalOffset={Platform.OS === 'ios' ? 94 : 0}>
-      <View
-        style={{ backgroundColor: colors.white, paddingBottom: insets.bottom }}>
+    <>
+      <KeyboardAvoidingView
+        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+        keyboardVerticalOffset={Platform.OS === 'ios' ? 94 : 0}>
         <View
           style={{
+            backgroundColor: colors.white,
             padding: 20,
             borderTopWidth: 1,
             borderTopColor: colors.grey,
@@ -53,7 +53,8 @@ export default function PostingCreate() {
             disabled={content.length < 1}
           />
         </View>
-      </View>
-    </KeyboardAvoidingView>
+      </KeyboardAvoidingView>
+      <View style={{ height: insets.bottom, backgroundColor: colors.white }} />
+    </>
   );
 }
