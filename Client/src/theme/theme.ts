@@ -1,6 +1,7 @@
 import { StyleSheet } from 'react-native';
 
 export const colors = {
+  blue: '#08f',
   lightGrey: '#f5f5f5',
   grey: '#ccc',
   darkGrey: '#aaa',
@@ -10,6 +11,16 @@ export const colors = {
 };
 
 export const styles = StyleSheet.create({
+  message: {
+    borderRadius: 15,
+    fontWeight: '600',
+    backgroundColor: colors.grey,
+    padding: 20,
+  },
+  messageSent: {
+    color: colors.white,
+    backgroundColor: colors.blue,
+  },
   destructive: {
     backgroundColor: colors.danger,
   },
@@ -21,7 +32,7 @@ export const styles = StyleSheet.create({
     opacity: 0.5,
   },
   button: {
-    backgroundColor: '#08f',
+    backgroundColor: colors.blue,
     borderRadius: 15,
     padding: 15,
     flexDirection: 'row',
