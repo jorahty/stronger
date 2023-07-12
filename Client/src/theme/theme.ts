@@ -16,10 +16,12 @@ export const styles = StyleSheet.create({
     fontWeight: '600',
     backgroundColor: colors.grey,
     padding: 20,
+    marginVertical: 5,
   },
   messageSent: {
     color: colors.white,
     backgroundColor: colors.blue,
+    marginVertical: 5,
   },
   destructive: {
     backgroundColor: colors.danger,
