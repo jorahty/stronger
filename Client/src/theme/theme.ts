@@ -21,7 +21,6 @@ export const styles = StyleSheet.create({
   messageSent: {
     color: colors.white,
     backgroundColor: colors.blue,
-    marginVertical: 5,
   },
   destructive: {
     backgroundColor: colors.danger,
