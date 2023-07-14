@@ -43,8 +43,9 @@ export const HomeHeaderLeft = () => {
 };
 
 export const HomeHeaderTitle = () => {
+  const { getPostings } = useViewModel();
   return (
-    <TouchableOpacity onPress={() => {}}>
+    <TouchableOpacity onPress={getPostings}>
       <MaterialIcons name="refresh" size={24} />
     </TouchableOpacity>
   );

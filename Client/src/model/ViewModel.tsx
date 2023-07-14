@@ -19,7 +19,7 @@ import {
   CREATE as CREATE_MESSAGE,
 } from '../repo/message';
 
-const ViewModelContext = createContext<any>(null);
+const ViewModelContext = createContext<any>({});
 
 export function useViewModel() {
   return useContext(ViewModelContext);
@@ -36,7 +36,7 @@ export default function ViewModel({ children }: Props) {
   const [selectedUser, setSelectedUser] = useState<null | User>(null);
   const [messages, setMessages] = useState<Message[]>([]);
 
-  const login = (username: string, password: string) => {
+  const login = async (username: string, password: string) => {
     LOGIN(username, password)
       .then((response) => {
         setLoginResponse(response);
@@ -47,18 +47,16 @@ export default function ViewModel({ children }: Props) {
       });
   };
 
-  const logout = () => {
+  const logout = async () => {
     setLoginResponse(null);
   };
 
+  const getPostings = async () => {
+    setPostings(await GET_POSTINGS(loginResponse!.accessToken));
+  };
+
   useEffect(() => {
-    const fetchData = async () => {
-      setPostings([]);
-      setPostings(await GET_POSTINGS(loginResponse!.accessToken));
-    };
-    if (loginResponse) {
-      fetchData();
-    }
+    if (loginResponse) getPostings();
   }, [loginResponse]);
 
   const createPosting = async (content: string) => {
@@ -99,6 +97,7 @@ export default function ViewModel({ children }: Props) {
         loginResponse,
         login,
         logout,
+        getPostings,
         postings,
         createPosting,
         deletePosting,
