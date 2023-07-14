@@ -1,8 +1,7 @@
 import { useState } from 'react';
-import { Pressable, View, Platform, FlatList } from 'react-native';
+import { TouchableOpacity, View, Platform, FlatList } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { MaterialIcons } from '@expo/vector-icons';
-import { Octicons } from '@expo/vector-icons';
+import { MaterialIcons, Octicons } from '@expo/vector-icons';
 
 import { useViewModel } from '../../model/ViewModel';
 import PostingCard from '../posting/Card';
@@ -35,11 +34,19 @@ export default function Home() {
 export const HomeHeaderLeft = () => {
   const { logout } = useViewModel();
   return (
-    <Pressable
+    <TouchableOpacity
       onPress={logout}
       style={Platform.OS === 'web' && { paddingLeft: 20 }}>
       <MaterialIcons name="logout" size={24} />
-    </Pressable>
+    </TouchableOpacity>
+  );
+};
+
+export const HomeHeaderTitle = () => {
+  return (
+    <TouchableOpacity onPress={() => {}}>
+      <MaterialIcons name="refresh" size={24} />
+    </TouchableOpacity>
   );
 };
 
@@ -51,12 +58,12 @@ export const HomeHeaderRight = () => {
         { flexDirection: 'row', gap: 20 },
         Platform.OS === 'web' && { paddingRight: 20 },
       ]}>
-      <Pressable onPress={() => navigate('Chats')}>
+      <TouchableOpacity onPress={() => navigate('Chats')}>
         <MaterialIcons name="chat-bubble-outline" size={24} />
-      </Pressable>
-      <Pressable onPress={() => navigate('Profile')}>
+      </TouchableOpacity>
+      <TouchableOpacity onPress={() => navigate('Profile')}>
         <Octicons name="person" size={24} />
-      </Pressable>
+      </TouchableOpacity>
     </View>
   );
 };

@@ -1,7 +1,11 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import Home, { HomeHeaderLeft, HomeHeaderRight } from './screens/Home';
+import Home, {
+  HomeHeaderLeft,
+  HomeHeaderTitle,
+  HomeHeaderRight,
+} from './screens/Home';
 import Chats from './screens/Chats';
 import Profile from './screens/Profile';
 import Chat from './screens/Chat';
@@ -19,6 +23,7 @@ export default function NavigationStack() {
           options={{
             headerTitleAlign: 'center',
             headerLeft: HomeHeaderLeft,
+            headerTitle: HomeHeaderTitle,
             headerRight: HomeHeaderRight,
           }}
         />
