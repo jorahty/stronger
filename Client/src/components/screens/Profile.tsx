@@ -4,11 +4,11 @@ import { useNavigation } from '@react-navigation/native';
 import { useViewModel } from '../../model/ViewModel';
 
 export default function Profile() {
-  const { selectedUser } = useViewModel();
+  const { selectedUserDetails } = useViewModel();
   const { navigate } = useNavigation<any>();
   return (
     <View style={styles.container}>
-      <Text>{selectedUser.name}'s Profile</Text>
+      <Text>{selectedUserDetails?.name}'s Profile</Text>
       <Button onPress={() => navigate('Chat')} title="Chat" />
       <Button onPress={() => navigate('Edit')} title="Edit" />
     </View>

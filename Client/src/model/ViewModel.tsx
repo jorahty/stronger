@@ -6,7 +6,13 @@ import {
   useState,
 } from 'react';
 
-import { LOGIN, LoginResponse, User } from '../repo/user';
+import {
+  LoginResponse,
+  User,
+  UserDetails,
+  LOGIN,
+  GET_DETAILS as GET_USER_DETAILS,
+} from '../repo/user';
 import {
   Posting,
   GET as GET_POSTINGS,
@@ -35,6 +41,8 @@ export default function ViewModel({ children }: Props) {
   const [postings, setPostings] = useState<Posting[]>([]);
   const [selectedUser, setSelectedUser] = useState<null | User>(null);
   const [messages, setMessages] = useState<Message[]>([]);
+  const [selectedUserDetails, setSelectedUserDetails] =
+    useState<null | UserDetails>(null);
 
   const login = async (username: string, password: string) => {
     LOGIN(username, password)
@@ -74,9 +82,11 @@ export default function ViewModel({ children }: Props) {
   const selectUser = async (user: User) => {
     setSelectedUser(user);
     setMessages([]);
-    // setProfile(null);
+    setSelectedUserDetails(null);
     setMessages(await GET_MESSAGES(loginResponse!.accessToken, user.username));
-    // setProfile(GET);
+    setSelectedUserDetails(
+      await GET_USER_DETAILS(loginResponse!.accessToken, user.username)
+    );
   };
 
   const getMessages = async () => {
@@ -112,6 +122,7 @@ export default function ViewModel({ children }: Props) {
         messages,
         createMessage,
         getMessages,
+        selectedUserDetails,
       }}>
       {children}
     </ViewModelContext.Provider>

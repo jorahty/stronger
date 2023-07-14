@@ -11,6 +11,15 @@ export interface LoginResponse {
   accessToken: string;
 }
 
+export interface UserDetails {
+  username: string;
+  name: string;
+  image?: string;
+  location?: string;
+  website?: string;
+  bio?: string;
+}
+
 export const LOGIN = async (username: string, password: string) => {
   const response = await fetch(`${endpoint}/login`, {
     method: 'POST',
@@ -26,4 +35,18 @@ export const LOGIN = async (username: string, password: string) => {
 
   const data = await response.json();
   return data;
+};
+
+// TODO: GET
+// fetch users from GET /user
+
+export const GET_DETAILS = async (token: string, username: string) => {
+  const response = await fetch(`${endpoint}/user/${username}`, {
+    method: 'GET',
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  const details: UserDetails = await response.json();
+  return details;
 };
