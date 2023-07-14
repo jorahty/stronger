@@ -1,4 +1,4 @@
-import endpoint from './endpoint';
+import { apiEndpoint } from './endpoint';
 import { User } from './user';
 
 export interface Posting {
@@ -13,7 +13,7 @@ export interface NewPosting {
 }
 
 export const GET = async (token: string) => {
-  const response = await fetch(`${endpoint}/posting`, {
+  const response = await fetch(`${apiEndpoint}/posting`, {
     method: 'GET',
     headers: {
       Authorization: `Bearer ${token}`,
@@ -26,7 +26,7 @@ export const GET = async (token: string) => {
 };
 
 export const CREATE = async (token: string, newPosting: NewPosting) => {
-  const response = await fetch(`${endpoint}/posting`, {
+  const response = await fetch(`${apiEndpoint}/posting`, {
     method: 'POST',
     headers: {
       Authorization: `Bearer ${token}`,
@@ -39,7 +39,7 @@ export const CREATE = async (token: string, newPosting: NewPosting) => {
 };
 
 export const DELETE = async (token: string, id: string) => {
-  await fetch(`${endpoint}/posting/${id}`, {
+  await fetch(`${apiEndpoint}/posting/${id}`, {
     method: 'DELETE',
     headers: {
       Authorization: `Bearer ${token}`,

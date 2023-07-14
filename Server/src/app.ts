@@ -1,4 +1,4 @@
-import express, { Router, ErrorRequestHandler } from 'express';
+import express, { Router } from 'express';
 import swaggerUi from 'swagger-ui-express';
 
 import swaggerDocument from '../build/swagger.json';
@@ -9,6 +9,9 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+
+// Serve images
+app.use('/image', express.static('image'));
 
 // Generate tsoa routes
 const router = Router();

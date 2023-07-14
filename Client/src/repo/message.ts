@@ -1,4 +1,4 @@
-import endpoint from './endpoint';
+import { apiEndpoint } from './endpoint';
 
 export interface Message {
   id: string;
@@ -13,7 +13,7 @@ interface NewMessage {
 }
 
 export const GET = async (token: string, username: string) => {
-  const response = await fetch(`${endpoint}/message/${username}`, {
+  const response = await fetch(`${apiEndpoint}/message/${username}`, {
     method: 'GET',
     headers: {
       Authorization: `Bearer ${token}`,
@@ -30,7 +30,7 @@ export const CREATE = async (
   username: string,
   newMessage: NewMessage
 ) => {
-  const response = await fetch(`${endpoint}/message/${username}`, {
+  const response = await fetch(`${apiEndpoint}/message/${username}`, {
     method: 'POST',
     headers: {
       Authorization: `Bearer ${token}`,

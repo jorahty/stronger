@@ -2,6 +2,7 @@ import { View, Text, Image, TouchableOpacity } from 'react-native';
 import { Posting } from '../../repo/posting';
 import { colors, styles } from '../../theme/theme';
 import formatISOString from '../../util/formatISOString';
+import { imageEndpoint } from '../../repo/endpoint';
 
 interface Props {
   posting: Posting;
@@ -25,7 +26,7 @@ export default function PostingCard({ posting, setSelectedPosting }: Props) {
       <Image
         source={
           posting.poster.image
-            ? { uri: posting.poster.image }
+            ? { uri: imageEndpoint + posting.poster.image }
             : PlaceholderImage
         }
         style={{ width: 60, height: 60, borderRadius: 10 }}

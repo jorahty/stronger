@@ -5,6 +5,7 @@ import { Ionicons, FontAwesome5 } from '@expo/vector-icons';
 import { styles } from '../../theme/theme';
 import { useViewModel } from '../../model/ViewModel';
 import Button from '../common/Button';
+import { imageEndpoint } from '../../repo/endpoint';
 
 const PlaceholderImage = require('../../../assets/pfp.jpeg');
 
@@ -28,7 +29,7 @@ export default function Profile() {
             <Image
               source={
                 selectedUserDetails.image
-                  ? { uri: selectedUserDetails.image }
+                  ? { uri: imageEndpoint + selectedUserDetails.image }
                   : PlaceholderImage
               }
               style={{ width: 160, height: 160, borderRadius: 10 }}

@@ -6,6 +6,7 @@ import { colors, styles } from '../../theme/theme';
 import { useViewModel } from '../../model/ViewModel';
 import MessageCard from '../message/Card';
 import MessageInput from '../message/Input';
+import { imageEndpoint } from '../../repo/endpoint';
 
 const PlaceholderImage = require('../../../assets/pfp.jpeg');
 
@@ -34,7 +35,9 @@ export default function Chat() {
         }}>
         <Image
           source={
-            selectedUser.image ? { uri: selectedUser.image } : PlaceholderImage
+            selectedUser.image
+              ? { uri: imageEndpoint + selectedUser.image }
+              : PlaceholderImage
           }
           style={{ width: 60, height: 60, borderRadius: 10 }}
         />

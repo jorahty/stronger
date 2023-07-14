@@ -1,4 +1,4 @@
-import endpoint from './endpoint';
+import { apiEndpoint } from './endpoint';
 
 export interface User {
   username: string;
@@ -21,7 +21,7 @@ export interface UserDetails {
 }
 
 export const LOGIN = async (username: string, password: string) => {
-  const response = await fetch(`${endpoint}/login`, {
+  const response = await fetch(`${apiEndpoint}/login`, {
     method: 'POST',
     body: JSON.stringify({ username, password }),
     headers: {
@@ -41,7 +41,7 @@ export const LOGIN = async (username: string, password: string) => {
 // fetch users from GET /user
 
 export const GET_DETAILS = async (token: string, username: string) => {
-  const response = await fetch(`${endpoint}/user/${username}`, {
+  const response = await fetch(`${apiEndpoint}/user/${username}`, {
     method: 'GET',
     headers: {
       Authorization: `Bearer ${token}`,
