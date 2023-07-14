@@ -1,5 +1,5 @@
 import { pool } from '../db';
-import { User, UserDetails } from './user';
+import { NewUserDetails, User, UserDetails } from './user';
 
 export class UserService {
   public async getWith(username: string): Promise<User[]> {
@@ -52,5 +52,15 @@ export class UserService {
     };
     const { rows } = await pool.query(query);
     return rows[0];
+  }
+
+  public async updateDetails(
+    username: string,
+    newUserDetials: NewUserDetails
+  ): Promise<UserDetails> {
+    return {
+      username: username,
+      ...newUserDetials,
+    };
   }
 }

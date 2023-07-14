@@ -12,3 +12,11 @@ export interface UserDetails {
   website?: string;
   bio?: string;
 }
+
+export interface NewUserDetails {
+  name: string;
+  image?: string;
+  location?: string;
+  website?: string;
+  bio?: string;
+}
