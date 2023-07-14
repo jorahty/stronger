@@ -52,6 +52,7 @@ export const HomeHeaderTitle = () => {
 };
 
 export const HomeHeaderRight = () => {
+  const { selectUser, loginResponse } = useViewModel();
   const { navigate } = useNavigation<any>();
   return (
     <View
@@ -62,7 +63,11 @@ export const HomeHeaderRight = () => {
       <TouchableOpacity onPress={() => navigate('Chats')}>
         <MaterialIcons name="chat-bubble-outline" size={24} />
       </TouchableOpacity>
-      <TouchableOpacity onPress={() => navigate('Profile')}>
+      <TouchableOpacity
+        onPress={() => {
+          selectUser(loginResponse.user);
+          navigate('Profile');
+        }}>
         <Octicons name="person" size={24} />
       </TouchableOpacity>
     </View>

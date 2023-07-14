@@ -1,10 +1,12 @@
+import { User } from '../user/user';
+
 export interface Credentials {
   username: string;
   password: string;
 }
 
 export interface LoginResponse {
-  username: string;
+  user: User;
   accessToken: string;
 }
 

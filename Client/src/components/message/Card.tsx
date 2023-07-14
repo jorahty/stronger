@@ -10,7 +10,7 @@ interface Props {
 
 export default function MessageCard({ message }: Props) {
   const { loginResponse } = useViewModel();
-  const wasSent: boolean = message.sender === loginResponse.username;
+  const wasSent: boolean = message.sender === loginResponse.user.username;
 
   return (
     <View style={{ alignItems: wasSent ? 'flex-end' : 'flex-start' }}>

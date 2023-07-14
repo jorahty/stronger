@@ -13,7 +13,8 @@ export class AuthService {
       SELECT
         member.username,
         member.data->>'pwhash' AS pwhash,
-        member.data->>'name' AS name
+        member.data->>'name' AS name,
+        member.data->>'image' AS image
       FROM
         member
       WHERE
@@ -35,7 +36,14 @@ export class AuthService {
           algorithm: 'HS256',
         }
       );
-      return { username: user.username, accessToken: accessToken };
+      return {
+        user: {
+          username: user.username,
+          name: user.name,
+          image: user.image,
+        },
+        accessToken: accessToken,
+      };
     } else {
       return undefined;
     }

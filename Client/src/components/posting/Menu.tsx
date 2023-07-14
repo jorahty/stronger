@@ -63,7 +63,8 @@ export default function PostingMenu({
               borderColor: colors.grey,
             }}>
             <View style={{ padding: 20, gap: 20 }}>
-              {selectedPosting?.poster.username === loginResponse.username ? (
+              {selectedPosting?.poster.username ===
+              loginResponse.user.username ? (
                 <Button
                   title="Remove Posting"
                   onPress={removePosting}

@@ -1,14 +1,14 @@
 import endpoint from './endpoint';
 
-export interface LoginResponse {
-  username: string;
-  accessToken: string;
-}
-
 export interface User {
   username: string;
   name: string;
-  image: string;
+  image?: string;
+}
+
+export interface LoginResponse {
+  user: User;
+  accessToken: string;
 }
 
 export const LOGIN = async (username: string, password: string) => {
