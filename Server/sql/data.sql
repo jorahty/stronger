@@ -1,5 +1,5 @@
 DELETE FROM member;
-INSERT INTO member (username, data) VALUES ('kyle', '{"pwhash": "$2b$10$4F/gZpDp/kcVn5hkCMuLQuljYmaVu2cVSzXagoBhyWEqnGSCVzytC", "name": "Kyle Hall", "image": "https://cdn.jorahty.repl.co/kyle.png", "location": "Santa Cruz, CA", "website": null, "bio": null}');
+INSERT INTO member (username, data) VALUES ('kyle', '{"pwhash": "$2b$10$4F/gZpDp/kcVn5hkCMuLQuljYmaVu2cVSzXagoBhyWEqnGSCVzytC", "name": "Kyle Hall", "image": "https://cdn.jorahty.repl.co/kyle.png", "location": "Santa Cruz, CA", "website": "https://jorahty.com", "bio": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris bibendum ex eu aliquet mollis. Maecenas viverra faucibus  acus a pulvinar."}');
 INSERT INTO member (username, data) VALUES ('anika', '{"pwhash": "$2b$10$wJYRDLqKmZmzHfkVYNnQH.GE8UIwmOH0yeDk/jUPUF1nQBlukwa5K", "name": "Anika Verma", "image": "https://cdn.jorahty.repl.co/anika.png", "location": "Santa Cruz, CA", "website": null, "bio": null}');
 INSERT INTO member (username, data) VALUES ('alex', '{"pwhash": "$2b$10$FXQicCPSO84fJ0I4Pdl81OoGCJIhKUl2wy6x6HBL3ZzAhYVtOzFCa", "name": "Alex Wu", "image": "https://cdn.jorahty.repl.co/alex.png", "location": "Santa Cruz, CA", "website": null, "bio": null}');
 
