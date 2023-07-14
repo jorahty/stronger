@@ -79,6 +79,12 @@ export default function ViewModel({ children }: Props) {
     // setProfile(GET);
   };
 
+  const getMessages = async () => {
+    setMessages(
+      await GET_MESSAGES(loginResponse!.accessToken, selectedUser!.username)
+    );
+  };
+
   const createMessage = async (content: string) => {
     const message = await CREATE_MESSAGE(
       loginResponse!.accessToken,
@@ -105,6 +111,7 @@ export default function ViewModel({ children }: Props) {
         selectUser,
         messages,
         createMessage,
+        getMessages,
       }}>
       {children}
     </ViewModelContext.Provider>

@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { FlatList, Image, Text, TouchableOpacity, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
@@ -9,8 +10,14 @@ import MessageInput from '../message/Input';
 const PlaceholderImage = require('../../../assets/pfp.jpeg');
 
 export default function Chat() {
-  const { selectedUser, messages } = useViewModel();
+  const { selectedUser, messages, getMessages } = useViewModel();
   const { navigate } = useNavigation<any>();
+
+  useEffect(() => {
+    const intervalId = setInterval(() => getMessages(), 2000);
+    return () => clearInterval(intervalId);
+  }, []);
+
   return (
     <View style={{ flex: 1 }}>
       <TouchableOpacity
