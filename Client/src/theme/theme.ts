@@ -2,6 +2,7 @@ import { StyleSheet } from 'react-native';
 
 export const colors = {
   blue: '#08f',
+  darkBlue: '#07f',
   lightGrey: '#f5f5f5',
   grey: '#ccc',
   darkGrey: '#aaa',
@@ -11,6 +12,10 @@ export const colors = {
 };
 
 export const styles = StyleSheet.create({
+  link: {
+    color: colors.darkBlue,
+    fontWeight: '600',
+  },
   title: {
     fontSize: 24,
     fontWeight: '700',

@@ -1,4 +1,4 @@
-import { Image, Text, View, SafeAreaView } from 'react-native';
+import { Image, Text, View, SafeAreaView, Linking } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { Ionicons, FontAwesome5 } from '@expo/vector-icons';
 
@@ -45,10 +45,16 @@ export default function Profile() {
                   style={{
                     flexDirection: 'row',
                     alignItems: 'center',
-                    gap: 5,
+                    gap: 10,
                   }}>
                   <Ionicons name="link-outline" size={24} color="black" />
-                  <Text>{selectedUserDetails.website}</Text>
+                  <Text
+                    style={styles.link}
+                    onPress={() =>
+                      Linking.openURL(selectedUserDetails.website)
+                    }>
+                    {selectedUserDetails.website.replace(/^https?:\/\//i, '')}
+                  </Text>
                 </View>
               )}
             </View>
