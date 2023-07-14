@@ -11,6 +11,7 @@
     "@types/pg": "*",
     "@types/supertest": "*",
     "@types/swagger-ui-express": "*",
+    "@types/uuid": "^9.0.2",
     "concurrently": "*",
     "eslint": "*",
     "eslint-config-typescript": "^3.0.0",
@@ -31,7 +32,8 @@
     "multer": "^1.4.5-lts.1",
     "pg": "*",
     "swagger-ui-express": "*",
-    "tsoa": "*"
+    "tsoa": "*",
+    "uuid": "^9.0.0"
   },
   "scripts": {
     "prestart": "npm run build",

@@ -1,3 +1,7 @@
+import fs from 'fs';
+import path from 'path';
+import { v4 as uuidv4 } from 'uuid';
+
 import { pool } from '../db';
 import { NewUserDetails, User, UserDetails } from './user';
 
@@ -52,6 +56,26 @@ export class UserService {
     };
     const { rows } = await pool.query(query);
     return rows[0];
+  }
+
+  public async createImage(image: Express.Multer.File): Promise<string> {
+    // Generate new id
+    const id = uuidv4();
+
+    // Derive file extention from `file.mimetype`
+    const fileExtention = image.mimetype.split('/')[1];
+
+    // Define file name
+    const fileName = id + '.' + fileExtention;
+
+    // Determine file path
+    const filePath = path.join(__dirname, '../../image', fileName);
+
+    // Write to disk (into the directory named `image`)
+    fs.writeFileSync(filePath, image.buffer);
+
+    // Return file name
+    return fileName;
   }
 
   public async updateDetails(
