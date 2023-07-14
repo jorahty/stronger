@@ -14,9 +14,11 @@ export default function MessageCard({ message }: Props) {
 
   return (
     <View style={{ alignItems: wasSent ? 'flex-end' : 'flex-start' }}>
-      <Text style={[styles.message, wasSent && styles.messageSent]}>
-        {message.content}
-      </Text>
+      <View style={[styles.message, wasSent && styles.messageSent]}>
+        <Text style={[styles.messageText, wasSent && styles.messageTextSent]}>
+          {message.content}
+        </Text>
+      </View>
     </View>
   );
 }

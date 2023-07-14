@@ -13,14 +13,18 @@ export const colors = {
 export const styles = StyleSheet.create({
   message: {
     borderRadius: 15,
-    fontWeight: '600',
     backgroundColor: colors.grey,
     padding: 20,
     marginVertical: 5,
   },
+  messageText: {
+    fontWeight: '600',
+  },
   messageSent: {
-    color: colors.white,
     backgroundColor: colors.blue,
+  },
+  messageTextSent: {
+    color: colors.white,
   },
   destructive: {
     backgroundColor: colors.danger,
