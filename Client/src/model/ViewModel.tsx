@@ -107,8 +107,8 @@ export default function ViewModel({ children }: Props) {
     setMessages([...messages, message]);
   };
 
-  const updateUserDetails = async () => {
-    await UPDATE_USER_DETAILS(loginResponse!.accessToken);
+  const updateUserDetails = async (imageUri: string) => {
+    await UPDATE_USER_DETAILS(loginResponse!.accessToken, imageUri);
   };
 
   return (

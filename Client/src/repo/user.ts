@@ -51,6 +51,23 @@ export const GET_DETAILS = async (token: string, username: string) => {
   return details;
 };
 
-export const UPDATE_DETAILS = async (token: string) => {
-  console.log('UPDATE_DETAILS');
+export const UPDATE_DETAILS = async (token: string, imageUri: string) => {
+  const response = await fetch(imageUri);
+  const blob = await response.blob();
+
+  const formData = new FormData();
+  formData.append('image', blob, 'pfp.png');
+  formData.append('name', 'James Tennant');
+  formData.append('location', 'Berkeley, CA');
+  formData.append('website', 'https://jorahty.com');
+  formData.append('bio', ':)');
+
+  await fetch(`${apiEndpoint}/user`, {
+    method: 'PUT',
+    headers: {
+      accept: 'application/json',
+      Authorization: `Bearer ${token}`,
+    },
+    body: formData,
+  });
 };
