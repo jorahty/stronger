@@ -50,3 +50,7 @@ export const GET_DETAILS = async (token: string, username: string) => {
   const details: UserDetails = await response.json();
   return details;
 };
+
+export const UPDATE_DETAILS = async (token: string) => {
+  console.log('UPDATE_DETAILS');
+};

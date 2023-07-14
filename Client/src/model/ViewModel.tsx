@@ -12,6 +12,7 @@ import {
   UserDetails,
   LOGIN,
   GET_DETAILS as GET_USER_DETAILS,
+  UPDATE_DETAILS as UPDATE_USER_DETAILS,
 } from '../repo/user';
 import {
   Posting,
@@ -106,6 +107,10 @@ export default function ViewModel({ children }: Props) {
     setMessages([...messages, message]);
   };
 
+  const updateUserDetails = async () => {
+    await UPDATE_USER_DETAILS(loginResponse!.accessToken);
+  };
+
   return (
     <ViewModelContext.Provider
       value={{
@@ -123,6 +128,7 @@ export default function ViewModel({ children }: Props) {
         createMessage,
         getMessages,
         selectedUserDetails,
+        updateUserDetails,
       }}>
       {children}
     </ViewModelContext.Provider>

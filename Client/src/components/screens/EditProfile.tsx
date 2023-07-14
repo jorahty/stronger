@@ -1,9 +1,13 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
+import { useViewModel } from '../../model/ViewModel';
+import Button from '../common/Button';
 
 export default function EditProfile() {
+  const { updateUserDetails } = useViewModel();
+
   return (
     <View style={styles.container}>
-      <Text>Hello, Edit!</Text>
+      <Button title="Save" onPress={updateUserDetails} />
     </View>
   );
 }
