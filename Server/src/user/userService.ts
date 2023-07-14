@@ -80,11 +80,31 @@ export class UserService {
 
   public async updateDetails(
     username: string,
-    newUserDetials: NewUserDetails
+    { name, image, location, website, bio }: NewUserDetails
   ): Promise<UserDetails> {
-    return {
-      username: username,
-      ...newUserDetials,
+    const update = `
+      UPDATE member
+      SET data = data || jsonb_build_object(
+        'name', $2::text,
+        'image', $3::text,
+        'location', $4::text,
+        'website', $5::text,
+        'bio', $6::text
+      )
+      WHERE username = $1
+      RETURNING
+        username,
+        data->>'name' AS name,
+        data->>'image' AS image,
+        data->>'location' AS location,
+        data->>'website' AS website,
+        data->>'bio' AS bio;
+    `;
+    const query = {
+      text: update,
+      values: [username, name, image, location, website, bio],
     };
+    const { rows } = await pool.query(query);
+    return rows[0];
   }
 }
