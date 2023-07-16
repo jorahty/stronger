@@ -84,3 +84,15 @@ export const UPDATE_DETAILS = async (
   const details: UserDetails = await res.json();
   return details;
 };
+
+export const GET_DIRECT_MESSAGES = async (token: string) => {
+  const response = await fetch(`${apiEndpoint}/user`, {
+    method: 'GET',
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  const details: User[] = await response.json();
+  return details;
+
+};
