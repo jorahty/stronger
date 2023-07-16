@@ -52,7 +52,7 @@ export const HomeHeaderTitle = () => {
 };
 
 export const HomeHeaderRight = () => {
-  const { selectUser, loginResponse } = useViewModel();
+  const { selectUser, loginResponse, getDirectMessages } = useViewModel();
   const { navigate } = useNavigation<any>();
   return (
     <View
@@ -60,7 +60,11 @@ export const HomeHeaderRight = () => {
         { flexDirection: 'row', gap: 20 },
         Platform.OS === 'web' && { paddingRight: 20 },
       ]}>
-      <TouchableOpacity onPress={() => navigate('Chats')}>
+      <TouchableOpacity
+        onPress={() => {
+          getDirectMessages();
+          navigate('Chats');
+        }}>
         <MaterialIcons name="chat-bubble-outline" size={24} />
       </TouchableOpacity>
       <TouchableOpacity
