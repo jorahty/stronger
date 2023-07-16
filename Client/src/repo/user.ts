@@ -14,10 +14,18 @@ export interface LoginResponse {
 export interface UserDetails {
   username: string;
   name: string;
-  image?: string;
-  location?: string;
-  website?: string;
-  bio?: string;
+  image: string;
+  location: string;
+  website: string;
+  bio: string;
+}
+
+export interface NewUserDetails {
+  name: string;
+  imageUri: string;
+  location: string;
+  website: string;
+  bio: string;
 }
 
 export const LOGIN = async (username: string, password: string) => {
@@ -51,18 +59,21 @@ export const GET_DETAILS = async (token: string, username: string) => {
   return details;
 };
 
-export const UPDATE_DETAILS = async (token: string, imageUri: string) => {
-  const response = await fetch(imageUri);
+export const UPDATE_DETAILS = async (
+  token: string,
+  newUserDetails: NewUserDetails
+) => {
+  const response = await fetch(newUserDetails.imageUri);
   const blob = await response.blob();
 
   const formData = new FormData();
-  formData.append('image', blob, 'pfp.png');
-  formData.append('name', 'James Tennant');
-  formData.append('location', 'Berkeley, CA');
-  formData.append('website', 'https://jorahty.com');
-  formData.append('bio', ':)');
+  formData.append('image', blob);
+  formData.append('name', newUserDetails.name);
+  formData.append('location', newUserDetails.location);
+  formData.append('website', newUserDetails.website);
+  formData.append('bio', newUserDetails.bio);
 
-  await fetch(`${apiEndpoint}/user`, {
+  const res = await fetch(`${apiEndpoint}/user`, {
     method: 'PUT',
     headers: {
       accept: 'application/json',
@@ -70,4 +81,6 @@ export const UPDATE_DETAILS = async (token: string, imageUri: string) => {
     },
     body: formData,
   });
+  const details: UserDetails = await res.json();
+  return details;
 };

@@ -12,6 +12,10 @@ export const colors = {
 };
 
 export const styles = StyleSheet.create({
+  formInput: {
+    backgroundColor: 'transparent',
+    padding: 10,
+  },
   link: {
     color: colors.darkBlue,
     fontWeight: '600',
@@ -37,6 +41,7 @@ export const styles = StyleSheet.create({
   },
   destructive: {
     backgroundColor: colors.danger,
+    borderColor: colors.danger,
   },
   headline: {
     fontSize: 18,
@@ -53,6 +58,8 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     gap: 10,
+    borderWidth: 2,
+    borderColor: colors.blue,
   },
   buttonText: {
     fontWeight: '700',
@@ -64,7 +71,6 @@ export const styles = StyleSheet.create({
   },
   buttonOutlined: {
     backgroundColor: 'transparent',
-    borderWidth: 2,
     borderColor: colors.darkGrey,
   },
   buttenTextOutlined: {

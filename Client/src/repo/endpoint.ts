@@ -1,4 +1,4 @@
-const serverIpAddress = '169.233.214.220';
+const serverIpAddress = '100.64.19.172';
 
 export const apiEndpoint = `http://${serverIpAddress}:4000/api/v0`;
 

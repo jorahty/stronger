@@ -10,6 +10,7 @@ import {
   LoginResponse,
   User,
   UserDetails,
+  NewUserDetails,
   LOGIN,
   GET_DETAILS as GET_USER_DETAILS,
   UPDATE_DETAILS as UPDATE_USER_DETAILS,
@@ -107,8 +108,10 @@ export default function ViewModel({ children }: Props) {
     setMessages([...messages, message]);
   };
 
-  const updateUserDetails = async (imageUri: string) => {
-    await UPDATE_USER_DETAILS(loginResponse!.accessToken, imageUri);
+  const updateUserDetails = async (newUserDetials: NewUserDetails) => {
+    setSelectedUserDetails(
+      await UPDATE_USER_DETAILS(loginResponse!.accessToken, newUserDetials)
+    );
   };
 
   return (
