@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { TouchableOpacity, View, Platform, FlatList } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useFocusEffect } from '@react-navigation/native';
 import { MaterialIcons, Octicons } from '@expo/vector-icons';
 
 import { useViewModel } from '../../model/ViewModel';
@@ -10,8 +10,14 @@ import { Posting } from '../../repo/posting';
 import PostingMenu from '../posting/Menu';
 
 export default function Home() {
-  const { postings } = useViewModel();
+  const { postings, getPostings } = useViewModel();
   const [selectedPosting, setSelectedPosting] = useState<null | Posting>(null);
+
+  useFocusEffect(
+    useCallback(() => {
+      getPostings();
+    }, [])
+  );
 
   return (
     <View style={{ flex: 1 }}>
