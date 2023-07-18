@@ -3,7 +3,7 @@ import { apiEndpoint } from './endpoint';
 export interface User {
   username: string;
   name: string;
-  image?: string;
+  image: string;
 }
 
 export interface LoginResponse {

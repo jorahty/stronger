@@ -3,7 +3,7 @@ import path from 'path';
 import { v4 as uuidv4 } from 'uuid';
 
 import { pool } from '../db';
-import { NewUserDetails, User, UserDetails } from './user';
+import { User, UserDetails } from './user';
 
 export class UserService {
   public async getWith(username: string): Promise<User[]> {
