@@ -63,11 +63,11 @@ export const UPDATE_DETAILS = async (
   token: string,
   newUserDetails: NewUserDetails
 ) => {
-  const response = await fetch(newUserDetails.imageUri);
-  const blob = await response.blob();
+  // const response = await fetch(newUserDetails.imageUri);
+  // const blob = await response.blob();
 
   const formData = new FormData();
-  formData.append('imageFile', blob);
+  // formData.append('imageFile', blob);
   formData.append('name', newUserDetails.name);
   formData.append('location', newUserDetails.location);
   formData.append('website', newUserDetails.website);
