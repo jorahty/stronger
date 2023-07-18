@@ -45,9 +45,6 @@ export const LOGIN = async (username: string, password: string) => {
   return data;
 };
 
-// TODO: GET
-// fetch users from GET /user
-
 export const GET_DETAILS = async (token: string, username: string) => {
   const response = await fetch(`${apiEndpoint}/user/${username}`, {
     method: 'GET',
@@ -85,13 +82,13 @@ export const UPDATE_DETAILS = async (
   return details;
 };
 
-export const GET_DIRECT_MESSAGES = async (token: string) => {
+export const GET_CHATS = async (token: string) => {
   const response = await fetch(`${apiEndpoint}/user`, {
     method: 'GET',
     headers: {
       Authorization: `Bearer ${token}`,
     },
   });
-  const details: User[] = await response.json();
-  return details;
+  const chats: User[] = await response.json();
+  return chats;
 };

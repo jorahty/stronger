@@ -10,11 +10,11 @@ const PlaceholderImage = require('../../../assets/pfp.jpeg');
 
 export default function Chats() {
   const { navigate } = useNavigation<any>();
-  const { directMessages, selectUser } = useViewModel();
+  const { chats, selectUser } = useViewModel();
 
   return (
     <FlatList
-      data={directMessages}
+      data={chats}
       renderItem={({ item: user }) => (
         <TouchableOpacity
           key={user.username}

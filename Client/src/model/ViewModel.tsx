@@ -14,7 +14,7 @@ import {
   LOGIN,
   GET_DETAILS as GET_USER_DETAILS,
   UPDATE_DETAILS as UPDATE_USER_DETAILS,
-  GET_DIRECT_MESSAGES,
+  GET_CHATS,
 } from '../repo/user';
 import {
   Posting,
@@ -42,7 +42,7 @@ export default function ViewModel({ children }: Props) {
   const [error, setError] = useState<null | string>();
   const [loginResponse, setLoginResponse] = useState<null | LoginResponse>();
   const [postings, setPostings] = useState<Posting[]>([]);
-  const [directMessages, setDirectMessages] = useState<User[]>([]);
+  const [chats, setChats] = useState<User[]>([]);
   const [selectedUser, setSelectedUser] = useState<null | User>(null);
   const [messages, setMessages] = useState<Message[]>([]);
   const [selectedUserDetails, setSelectedUserDetails] =
@@ -70,7 +70,7 @@ export default function ViewModel({ children }: Props) {
   useEffect(() => {
     if (loginResponse) {
       getPostings();
-      getDirectMessages();
+      getChats();
     }
   }, [loginResponse]);
 
@@ -113,10 +113,8 @@ export default function ViewModel({ children }: Props) {
     setMessages([...messages, message]);
   };
 
-  const getDirectMessages = async () => {
-    setDirectMessages(
-      await GET_DIRECT_MESSAGES(loginResponse!.accessToken)
-    );
+  const getChats = async () => {
+    setChats(await GET_CHATS(loginResponse!.accessToken));
   };
 
   const updateUserDetails = async (newUserDetials: NewUserDetails) => {
@@ -143,8 +141,8 @@ export default function ViewModel({ children }: Props) {
         getMessages,
         selectedUserDetails,
         updateUserDetails,
-        getDirectMessages,
-        directMessages,
+        getChats,
+        chats,
       }}>
       {children}
     </ViewModelContext.Provider>

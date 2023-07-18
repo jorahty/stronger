@@ -52,7 +52,7 @@ export const HomeHeaderTitle = () => {
 };
 
 export const HomeHeaderRight = () => {
-  const { selectUser, loginResponse, getDirectMessages } = useViewModel();
+  const { selectUser, loginResponse, getChats } = useViewModel();
   const { navigate } = useNavigation<any>();
   return (
     <View
@@ -62,7 +62,7 @@ export const HomeHeaderRight = () => {
       ]}>
       <TouchableOpacity
         onPress={() => {
-          getDirectMessages();
+          getChats();
           navigate('Chats');
         }}>
         <MaterialIcons name="chat-bubble-outline" size={24} />
