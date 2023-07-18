@@ -124,6 +124,7 @@ export default function EditProfile() {
               title="Save Changes"
               onPress={onSave}
               icon={<FontAwesome name="check" style={styles.buttonIcon} />}
+              disabled={!name || !location}
             />
           </View>
         </View>
