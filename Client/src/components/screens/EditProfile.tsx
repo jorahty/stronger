@@ -128,10 +128,5 @@ export default function EditProfile() {
         </View>
       </View>
     </SafeAreaView>
-    //   <Button title="Pick an image from camera roll" onPress={pickImage} />
-    //   {imageUri && (
-    //     <Image source={{ uri: imageUri }} style={{ width: 200, height: 200 }} />
-    //   )}
-    //   <Button title="Save" onPress={onSave} />
   );
 }
