@@ -1,30 +1,28 @@
-import { Button, StyleSheet, Text, View, TouchableOpacity, FlatList, Dimensions, ImageBackground} from 'react-native';
-import { useEffect } from 'react';
+import {
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+  ImageBackground,
+} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { imageEndpoint } from '../../repo/endpoint';
 import { useViewModel } from '../../model/ViewModel';
 import { colors, styles as appStyles } from '../../theme/theme';
-import { GET_DIRECT_MESSAGES, User } from '../../repo/user';
-
+import { User } from '../../repo/user';
 
 const PlaceholderImage = require('../../../assets/pfp.jpeg');
 const Arrow = require('../../../assets/right_arrow.png');
 
 export default function Chats() {
   const { navigate } = useNavigation<any>();
-  const { getDirectMessages, directMessages, selectUser } = useViewModel();
-
-  useEffect(() => {
-    const intervalId = setInterval(() => getDirectMessages(), 2000);
-    return () => clearInterval(intervalId);
-  }, []);
+  const { directMessages, selectUser } = useViewModel();
 
   const handleDirectMessagePress = (user: User) => {
     selectUser(user);
     navigate('Chat');
   };
 
-  
   return (
     <View style={styles.container}>
       {directMessages.map((user: User) => (
@@ -33,14 +31,14 @@ export default function Chats() {
           onPress={() => handleDirectMessagePress(user)}
           style={styles.rectangle}>
           <View style={styles.profileImageContainer}>
-          <ImageBackground
-            source={
-              user.image
-                ? { uri: imageEndpoint + user.image }
-                : PlaceholderImage
-            }
-            style={{ width: 60, height: 60, borderRadius: 10 }}
-          />
+            <ImageBackground
+              source={
+                user.image
+                  ? { uri: imageEndpoint + user.image }
+                  : PlaceholderImage
+              }
+              style={{ width: 60, height: 60, borderRadius: 10 }}
+            />
           </View>
           <Text style={styles.username}>{user.name}</Text>
           <ImageBackground source={Arrow} style={styles.arrow} />
