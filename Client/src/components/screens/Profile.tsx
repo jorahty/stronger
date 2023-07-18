@@ -41,7 +41,7 @@ export default function Profile() {
                 <Ionicons name="location-outline" size={24} color="black" />
                 <Text>{selectedUserDetails.location}</Text>
               </View>
-              {selectedUserDetails.website && (
+              {selectedUserDetails.website ? (
                 <View
                   style={{
                     flexDirection: 'row',
@@ -57,6 +57,8 @@ export default function Profile() {
                     {selectedUserDetails.website.replace(/^https?:\/\//i, '')}
                   </Text>
                 </View>
+              ) : (
+                <></>
               )}
             </View>
           </View>
