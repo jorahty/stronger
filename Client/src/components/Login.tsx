@@ -21,6 +21,7 @@ export default function Login() {
       }}>
       <View style={{ width: '100%', maxWidth: 250, gap: 20 }}>
         <TextInput
+          autoCapitalize="none"
           style={styles.textInput}
           placeholder="Username"
           value={username}
