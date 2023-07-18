@@ -71,7 +71,7 @@ export const UPDATE_DETAILS = async (
       const blob = await response.blob();
       formData.append('imageFile', blob);
     } else {
-      var blob = {
+      const blob = {
         uri: imageUri,
         type: 'image/jpeg',
         name: 'blob.jpg',
