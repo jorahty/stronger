@@ -15,8 +15,6 @@ import Button from '../common/Button';
 import { imageEndpoint } from '../../repo/endpoint';
 import { FontAwesome, Ionicons } from '@expo/vector-icons';
 
-const PlaceholderImage = require('../../../assets/pfp.jpeg');
-
 export default function EditProfile() {
   const { selectedUserDetails, updateUserDetails } = useViewModel();
   const { navigate } = useNavigation<any>();
