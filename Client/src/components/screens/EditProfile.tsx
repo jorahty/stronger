@@ -7,19 +7,19 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { FontAwesome, Ionicons } from '@expo/vector-icons';
 import * as ImagePicker from 'expo-image-picker';
 
 import { styles } from '../../theme/theme';
 import { useViewModel } from '../../model/ViewModel';
 import Button from '../common/Button';
 import { imageEndpoint } from '../../repo/endpoint';
-import { FontAwesome, Ionicons } from '@expo/vector-icons';
 
 export default function EditProfile() {
   const { selectedUserDetails, updateUserDetails } = useViewModel();
   const { navigate } = useNavigation<any>();
   const [name, setName] = useState(selectedUserDetails.name);
-  const [imageUri, setImageUri] = useState('');
+  const [imageUri, setImageUri] = useState<null | string>(null);
   const [location, setLocation] = useState(selectedUserDetails.location);
   const [website, setWebsite] = useState(selectedUserDetails.website);
   const [bio, setBio] = useState(selectedUserDetails.bio);
@@ -35,7 +35,7 @@ export default function EditProfile() {
     navigate('Profile');
   };
 
-  const pickImage = async () => {
+  const pickImageUri = async () => {
     let result = await ImagePicker.launchImageLibraryAsync();
 
     if (!result.canceled) {
@@ -54,7 +54,7 @@ export default function EditProfile() {
         }}>
         <View style={{ gap: 20 }}>
           <View style={{ flexDirection: 'row', gap: 20 }}>
-            <TouchableOpacity onPress={pickImage}>
+            <TouchableOpacity onPress={pickImageUri}>
               <Image
                 source={{
                   uri: imageUri || imageEndpoint + selectedUserDetails.image,
