@@ -36,30 +36,34 @@ export class UserController extends Controller {
   @Response('401', 'Unauthorized')
   @Response('415', 'Unsupported Media Type')
   public async updateUserDetails(
-    @UploadedFile() image: Express.Multer.File,
+    @Request() req: express.Request,
     @FormField() name: string,
     @FormField() location: string,
     @FormField() website: string,
     @FormField() bio: string,
-    @Request() req: express.Request
+    @UploadedFile() imageFile?: Express.Multer.File
   ): Promise<void | UserDetails> {
-    // Define supported media types
-    const supported = ['image/png', 'image/jpeg', 'image/gif', 'image/webp'];
+    let image = req.user.image;
 
-    if (supported.includes(image.mimetype) === false) {
-      return this.setStatus(415);
+    if (imageFile) {
+      const supported = ['image/png', 'image/jpeg', 'image/gif', 'image/webp'];
+
+      if (!supported.includes(imageFile.mimetype)) {
+        return this.setStatus(415);
+      }
+
+      image = await new UserService().createImage(imageFile);
     }
 
-    const fileName = await new UserService().createImage(image);
-
-    const newUserDetails = {
+    const userDetails = {
+      username: req.user.username,
       name: name,
-      image: fileName,
+      image: image,
       location: location,
       website: website,
       bio: bio,
     };
 
-    return new UserService().updateDetails(req.user.username, newUserDetails);
+    return new UserService().updateDetails(userDetails);
   }
 }

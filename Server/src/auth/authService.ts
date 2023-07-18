@@ -29,7 +29,12 @@ export class AuthService {
 
     if (user && bcrypt.compareSync(credentials.password, user.pwhash)) {
       const accessToken = jwt.sign(
-        { username: user.username, name: user.name, scopes: ['member'] },
+        {
+          username: user.username,
+          name: user.name,
+          image: user.image,
+          scopes: ['member'],
+        },
         process.env.ACCESS_TOKEN as string,
         {
           expiresIn: '30m',
@@ -72,7 +77,11 @@ export class AuthService {
                 }
               }
             }
-            resolve({ username: user.username, name: user.name });
+            resolve({
+              username: user.username,
+              name: user.name,
+              image: user.image,
+            });
           }
         );
       }

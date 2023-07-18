@@ -13,5 +13,6 @@ export interface LoginResponse {
 export interface JwtPayload {
   username: string;
   name: string;
+  image: string;
   scopes: string[];
 }

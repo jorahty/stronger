@@ -78,10 +78,7 @@ export class UserService {
     return fileName;
   }
 
-  public async updateDetails(
-    username: string,
-    { name, image, location, website, bio }: NewUserDetails
-  ): Promise<UserDetails> {
+  public async updateDetails(userDetails: UserDetails): Promise<UserDetails> {
     const update = `
       UPDATE member
       SET data = data || jsonb_build_object(
@@ -102,7 +99,14 @@ export class UserService {
     `;
     const query = {
       text: update,
-      values: [username, name, image, location, website, bio],
+      values: [
+        userDetails.username,
+        userDetails.name,
+        userDetails.image,
+        userDetails.location,
+        userDetails.website,
+        userDetails.bio,
+      ],
     };
     const { rows } = await pool.query(query);
     return rows[0];
