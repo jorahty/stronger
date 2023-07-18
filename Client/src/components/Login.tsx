@@ -1,10 +1,12 @@
 import { useState } from 'react';
-import { Text, TextInput, View } from 'react-native';
+import { Text, TextInput, View, Image } from 'react-native';
 import { Entypo } from '@expo/vector-icons';
 
 import { useViewModel } from '../model/ViewModel';
 import { colors, styles } from '../theme/theme';
 import Button from './common/Button';
+
+const Logo = require('../../assets/logo.png');
 
 export default function Login() {
   const { login, error } = useViewModel();
@@ -20,6 +22,16 @@ export default function Login() {
         backgroundColor: colors.lightGrey,
       }}>
       <View style={{ width: '100%', maxWidth: 250, gap: 20 }}>
+        <View
+          style={{ width: '100%', alignItems: 'center', paddingBottom: 10 }}>
+          <Image
+            source={Logo}
+            style={{
+              width: 468 / 3,
+              height: 327 / 3,
+            }}
+          />
+        </View>
         <TextInput
           autoCapitalize="none"
           style={styles.textInput}
