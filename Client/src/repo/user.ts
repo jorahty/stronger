@@ -1,4 +1,7 @@
+import * as FileSystem from 'expo-file-system';
+
 import { apiEndpoint } from './endpoint';
+import { Platform } from 'react-native';
 
 export interface User {
   username: string;
@@ -58,20 +61,29 @@ export const GET_DETAILS = async (token: string, username: string) => {
 
 export const UPDATE_DETAILS = async (
   token: string,
-  newUserDetails: NewUserDetails
+  { imageUri, name, location, website, bio }: NewUserDetails
 ) => {
   const formData = new FormData();
 
-  if (newUserDetails.imageUri) {
-    const response = await fetch(newUserDetails.imageUri);
-    const blob = await response.blob();
-    formData.append('imageFile', blob);
+  if (imageUri) {
+    if (Platform.OS === 'web') {
+      const response = await fetch(imageUri);
+      const blob = await response.blob();
+      formData.append('imageFile', blob);
+    } else {
+      var blob = {
+        uri: imageUri,
+        type: 'image/jpeg',
+        name: 'blob.jpg',
+      };
+      formData.append('imageFile', blob as any);
+    }
   }
 
-  formData.append('name', newUserDetails.name);
-  formData.append('location', newUserDetails.location);
-  formData.append('website', newUserDetails.website);
-  formData.append('bio', newUserDetails.bio);
+  formData.append('name', name);
+  formData.append('location', location);
+  formData.append('website', website);
+  formData.append('bio', bio);
 
   const res = await fetch(`${apiEndpoint}/user`, {
     method: 'PUT',
