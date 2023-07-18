@@ -67,7 +67,7 @@ export const UPDATE_DETAILS = async (
   const blob = await response.blob();
 
   const formData = new FormData();
-  formData.append('image', blob);
+  formData.append('imageFile', blob);
   formData.append('name', newUserDetails.name);
   formData.append('location', newUserDetails.location);
   formData.append('website', newUserDetails.website);
@@ -94,5 +94,4 @@ export const GET_DIRECT_MESSAGES = async (token: string) => {
   });
   const details: User[] = await response.json();
   return details;
-
 };
