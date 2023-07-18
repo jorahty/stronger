@@ -1,90 +1,48 @@
-import {
-  StyleSheet,
-  Text,
-  View,
-  TouchableOpacity,
-  ImageBackground,
-} from 'react-native';
+import { Text, TouchableOpacity, Image, FlatList } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { FontAwesome } from '@expo/vector-icons';
+
 import { imageEndpoint } from '../../repo/endpoint';
 import { useViewModel } from '../../model/ViewModel';
-import { colors, styles as appStyles } from '../../theme/theme';
-import { User } from '../../repo/user';
+import { colors, styles } from '../../theme/theme';
 
 const PlaceholderImage = require('../../../assets/pfp.jpeg');
-const Arrow = require('../../../assets/right_arrow.png');
 
 export default function Chats() {
   const { navigate } = useNavigation<any>();
   const { directMessages, selectUser } = useViewModel();
 
-  const handleDirectMessagePress = (user: User) => {
-    selectUser(user);
-    navigate('Chat');
-  };
-
   return (
-    <View style={styles.container}>
-      {directMessages.map((user: User) => (
+    <FlatList
+      data={directMessages}
+      renderItem={({ item: user }) => (
         <TouchableOpacity
           key={user.username}
-          onPress={() => handleDirectMessagePress(user)}
-          style={styles.rectangle}>
-          <View style={styles.profileImageContainer}>
-            <ImageBackground
-              source={
-                user.image
-                  ? { uri: imageEndpoint + user.image }
-                  : PlaceholderImage
-              }
-              style={{ width: 60, height: 60, borderRadius: 10 }}
-            />
-          </View>
-          <Text style={styles.username}>{user.name}</Text>
-          <ImageBackground source={Arrow} style={styles.arrow} />
+          onPress={() => {
+            selectUser(user);
+            navigate('Chat');
+          }}
+          style={{
+            flexDirection: 'row',
+            padding: 20,
+            gap: 20,
+            backgroundColor: colors.white,
+            borderBottomWidth: 1,
+            borderBottomColor: colors.grey,
+            alignItems: 'center',
+          }}>
+          <Image
+            source={
+              user.image
+                ? { uri: imageEndpoint + user.image }
+                : PlaceholderImage
+            }
+            style={{ width: 60, height: 60, borderRadius: 10 }}
+          />
+          <Text style={[styles.headline, { flex: 1 }]}>{user.name}</Text>
+          <FontAwesome name="chevron-right" size={18} />
         </TouchableOpacity>
-      ))}
-    </View>
+      )}
+    />
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'flex-start',
-    justifyContent: 'flex-start',
-  },
-  rectangle: {
-    backgroundColor: colors.white,
-    borderBottomWidth: 1,
-    borderBottomColor: colors.grey,
-    flexDirection: 'row',
-    padding: 20,
-    gap: 20,
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    width: '100%',
-    maxWidth: 900,
-  },
-  profileImageContainer: {
-    width: 60,
-    height: 60,
-    borderRadius: 10,
-    overflow: 'hidden',
-  },
-  profileImage: {
-    flex: 1,
-    width: '100%',
-    height: '100%',
-  },
-  username: {
-    ...appStyles.headline,
-    flex: 1,
-    marginLeft: 20,
-  },
-  arrow: {
-    width: 16,
-    height: 16,
-    marginLeft: 20,
-  },
-});
