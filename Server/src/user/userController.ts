@@ -43,7 +43,7 @@ export class UserController extends Controller {
     @FormField() bio: string,
     @UploadedFile() imageFile?: Express.Multer.File
   ): Promise<void | UserDetails> {
-    let image = req.user.image;
+    let image = (await this.getUserDetails(req.user.username)).image;
 
     if (imageFile) {
       const supported = ['image/png', 'image/jpeg', 'image/gif', 'image/webp'];
