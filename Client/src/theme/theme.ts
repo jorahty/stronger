@@ -12,6 +12,12 @@ export const colors = {
 };
 
 export const styles = StyleSheet.create({
+  info: {
+    fontWeight: '600',
+    fontSize: 18,
+    textAlign: 'center',
+    color: colors.deepGrey,
+  },
   formInput: {
     backgroundColor: 'transparent',
     padding: 10,

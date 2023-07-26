@@ -1,4 +1,4 @@
-import { Text, TouchableOpacity, Image, FlatList } from 'react-native';
+import { View, Text, TouchableOpacity, Image, FlatList } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { FontAwesome } from '@expo/vector-icons';
 
@@ -11,6 +11,16 @@ const PlaceholderImage = require('../../../assets/pfp.jpeg');
 export default function Chats() {
   const { navigate } = useNavigation<any>();
   const { chats, selectUser } = useViewModel();
+
+  if (chats.length === 0) {
+    return (
+      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+        <Text style={[{ padding: 20 }, styles.info]}>
+          You haven't sent or received any messages yet
+        </Text>
+      </View>
+    );
+  }
 
   return (
     <FlatList
