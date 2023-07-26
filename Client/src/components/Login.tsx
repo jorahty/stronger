@@ -10,8 +10,8 @@ const Logo = require('../../assets/logo.png');
 
 export default function Login() {
   const { login, error } = useViewModel();
-  const [username, setUsername] = useState('anika');
-  const [password, setPassword] = useState('anika');
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
 
   return (
     <View
