@@ -37,7 +37,7 @@ export class AuthService {
         },
         process.env.ACCESS_TOKEN as string,
         {
-          expiresIn: '30m',
+          expiresIn: '3h',
           algorithm: 'HS256',
         }
       );
